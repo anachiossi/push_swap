@@ -6,7 +6,7 @@
 /*   By: gsantoni <gsantoni@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 18:29:22 by gsantoni          #+#    #+#             */
-/*   Updated: 2026/06/10 20:21:52 by gsantoni         ###   ########.fr       */
+/*   Updated: 2026/06/11 09:58:34 by gsantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,12 @@ typedef struct s_stack {
 } t_stack;
 
 t_node	*new_node(int value);
+t_node	*pop(t_stack *stack);
 t_stack	*new_stack(void);
 void	free_stack(t_stack *stack);
-void	add_node_top(t_stack *stack, t_node *new);
+void	push(t_stack *stack, t_node *new);
 void	add_node_bottom(t_stack *stack, t_node *new);
 void	p(t_stack *x, t_stack *y);
+void	r(t_stack *x);
 
 #endif

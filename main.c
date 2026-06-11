@@ -6,7 +6,7 @@
 /*   By: gsantoni <gsantoni@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 18:45:55 by gsantoni          #+#    #+#             */
-/*   Updated: 2026/06/10 21:49:40 by gsantoni         ###   ########.fr       */
+/*   Updated: 2026/06/11 10:02:21 by gsantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,29 +34,47 @@ int		main(void)
 	t_stack *a = new_stack();
 	t_node	*a1 = new_node(5);
 	t_node	*a2 = new_node(6);
+	t_node	*a3 = new_node(7);
 
 	t_stack *b = new_stack();
-	t_node	*b1 = new_node(7);
-	t_node	*b2 = new_node(8);
+	t_node	*b1 = new_node(8);
+	t_node	*b2 = new_node(9);
+	t_node	*b3 = new_node(10);
 
-	add_node_top(a, a1);
-	add_node_top(a, a2);
-	add_node_top(b, b1);
-	add_node_top(b, b2);
-
+	push(a, a1);
+	push(b, b1);
+	//print_stack(a);
+	push(a, a2);
+	push(b, b2);
+	//print_stack(a);
+	push(a, a3);
+	push(b, b3);
+	//print_stack(a);
+	//r(a);
 	printf("a: ");
 	print_stack(a);
 	printf("b: ");
 	print_stack(b);
-
 	p(a, b);
-
-	printf("======\n");
-	
+	printf("========\n");
 	printf("a: ");
 	print_stack(a);
 	printf("b: ");
 	print_stack(b);
+
+	//printf("a: ");
+	//print_stack(a);
+	//printf("b: ");
+	//print_stack(b);
+
+	//p(a, b);
+
+	//printf("======\n");
+	
+	//printf("a: ");
+	//print_stack(a);
+	//printf("b: ");
+	//print_stack(b);
 	
 	free_stack(a);
 	free_stack(b);

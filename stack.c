@@ -6,7 +6,7 @@
 /*   By: gsantoni <gsantoni@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 19:42:37 by gsantoni          #+#    #+#             */
-/*   Updated: 2026/06/10 20:57:17 by gsantoni         ###   ########.fr       */
+/*   Updated: 2026/06/11 09:56:50 by gsantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ t_stack		*new_stack(void)
 	return (stack);
 }
 
-void	add_node_top(t_stack *stack, t_node *new)
+void	push(t_stack *stack, t_node *new)
 {
 	if (!stack || !new)
 		return ;
@@ -54,6 +54,23 @@ void	add_node_top(t_stack *stack, t_node *new)
 	}
 	stack->size += 1;
 }
+
+t_node	*pop(t_stack *stack)
+{
+	t_node	*temp;
+
+	if (!stack || !stack->size)
+		return (NULL);
+	temp = stack->top;
+	stack->top = temp->next;
+	temp->next = NULL;
+	if (stack->bottom == temp)
+		stack->bottom = NULL;
+	stack->size -= 1;
+	return (temp);
+}
+
+//non penso che ci serva
 void	add_node_bottom(t_stack *stack, t_node *new)
 {
 	if (!stack || !new)
