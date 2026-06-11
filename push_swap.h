@@ -13,8 +13,11 @@
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# include "libft.h"
+#include "libft.h"
+#include <unistd.h>
+#include <stdlib.h>
 
+//rank is 0 if smallest, size-1 if biggest.
 typedef struct s_node {
 	int				value;
 	int				rank;
@@ -27,20 +30,20 @@ typedef struct s_stack {
 	int			size;
 } t_stack;
 
+//level if 0 == adaptive, 1 == simple, 2 == medium, 3 == complex
+//bench is boolean 1 if --bench is set, 0 otherwise
 typedef struct s_flags
 {
-    int     adaptive;
-    int     simple;
-    int     medium;
-    int     complex;
+    int     level;
     int     bench;
 }   t_flags;
 
 // parsing — parse.c (ft_atoi from libft)
 int		validate_input(char **argv);
 int		validate_int_limits(char **argv);
-int		*input_to_array(int argc, char **argv);
+int		*input_to_array(int size, char **argv);
 int		validate_int_duplicates(int *arr, int size);
+int		assign_flags(t_flags *f, char **argv, int argc);
 
 // stack creation — stack.c
 t_node	*new_node(int value);
@@ -74,12 +77,30 @@ void	rra(t_stack *a);
 void	rrb(t_stack *b);
 
 //adaptive algorithm — dispatcher.c
-void	dispatcher(t_stack *a, t_stack *b, float disorder);
+void	dispatcher(t_stack *a, t_stack *b, t_flags f); // to do: flags
 
 //disorder computation — disorder.c
 float	compute_disorder(t_stack *h);
 
-//sorting — easy_sort.c
+//sorting — sort_simple.c
 void	bubble_sort(t_stack *a, t_stack *b);
+
+//sorting — sort_medium.c
+void	chunk_sort(t_stack *a, t_stack *b); // to do
+
+//sorting — sort_complex.c
+void	radix_sort(t_stack *a, t_stack *b); // to do
+
+//sorting — sort_special.c
+void	special_sort(t_stack *a, t_stack *b); //to do
+void	sort_2(t_stack *a, t_stack *b); //to do
+void	sort_3(t_stack *a, t_stack *b); //to do
+void	sort_inverted(t_stack *a, t_stack *b); //to do 
+
+//printing - printers.c
+void	print_stack(t_stack *stack);
+void	print_ranks(t_stack *stack);
+//void	print_operations(t_list operations *ops); // to think
+//void	print_bench(t_stack *a, t_stack *b, t_list operations *ops); // to think
 
 #endif

@@ -11,43 +11,43 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdlib.h>
+
 // must be integer, no special chars, no empty strings
-int	validate_input(char **argv)
+int	validate_input(char **arg_nbr)
 {
 	int	i;
 	int	j;
-	i = 1;
-	while (argv[i])
+	i = 0;
+	while (arg_nbr[i])
 	{
 		j = 0;
-		if (argv[i][j] == '-' || argv[i][j] == '+')
+		if (arg_nbr[i][j] == '-' || arg_nbr[i][j] == '+')
 			j++;
-		if (argv[i][j] == '\0')
+		if (arg_nbr[i][j] == '\0')
 			return (-1);
-		while (argv[i][j])
+		while (arg_nbr[i][j])
 		{
-			if (!ft_isdigit(argv[i][j]))
+			if (!ft_isdigit(arg_nbr[i][j]))
 				return (-1);
 			j++;
 		}
 		i++;
 	}
-	if (validate_int_limits(argv) == -1)
+	if (validate_int_limits(arg_nbr) == -1)
 		return (-1);
 	return (1);
 }
 
-int validate_int_limits(char **argv)
+int validate_int_limits(char **arg_nbr)
 {
 	size_t	len;
 	char	*ptr;
 	int 	i;
 	
-	i = 1;
-	while (argv[i])
+	i = 0;
+	while (arg_nbr[i])
 	{
-		ptr = argv[i];
+		ptr = arg_nbr[i];
 		if (ptr[0] == '-' || ptr[0] == '+')
 			ptr++;
 		len = ft_strlen(ptr);
@@ -55,9 +55,9 @@ int validate_int_limits(char **argv)
 			return (-1);
 		if (len == 10)
 		{
-			if (argv[i][0] == '-' && ft_strncmp(ptr, "2147483648", 10) > 0)
+			if (arg_nbr[i][0] == '-' && ft_strncmp(ptr, "2147483648", 10) > 0)
 				return (-1);
-			if (argv[i][0] != '-' && ft_strncmp(ptr, "2147483647", 10) > 0)
+			if (arg_nbr[i][0] != '-' && ft_strncmp(ptr, "2147483647", 10) > 0)
 				return (-1);
 		}
 		i++;
@@ -65,21 +65,23 @@ int validate_int_limits(char **argv)
 	return (1);
 }
 
-int	*input_to_array(int argc, char **argv)
+int	*input_to_array(int size, char **arg_nbr)
 {
 	int	*arr;
 	int	i;
 
-	arr = (int *)malloc(sizeof(int) * (argc - 1));
+	if (validate_input(arg_nbr) == -1)
+		return (NULL);
+	arr = (int *)malloc(sizeof(int) * size);
 	if (!arr)
 		return (NULL);
 	i = 0;
-	while (i < argc - 1)
+	while (i < size)
 	{
-		arr[i] = ft_atoi(argv[i + 1]);
+		arr[i] = ft_atoi(arg_nbr[i]);
 		i++;
 	}
-	if (validate_int_duplicates(arr, argc - 1) == -1)
+	if (validate_int_duplicates(arr, size) == -1)
 	{
 		free(arr);
 		return (NULL);
@@ -105,4 +107,29 @@ int	validate_int_duplicates(int *arr, int size)
 		i++;
 	}
 	return (1);
+}
+int	assign_flags(t_flags *f, char **argv, int argc)
+{
+	int		i;
+	f->level = 0;
+	f->bench = 0;
+
+	i = 1;
+	while (i < argc && argv[i][0] == '-' && argv[i][1] == '-')
+	{
+		if (ft_strncmp(argv[i], "--adaptive", 11) == 0)
+			f->level = 0;
+		else if (ft_strncmp(argv[i], "--simple", 9) == 0)
+			f->level = 1;
+		else if (ft_strncmp(argv[i], "--medium", 9) == 0)
+			f->level = 2;
+		else if (ft_strncmp(argv[i], "--complex", 10) == 0)
+			f->level = 3;
+		else if (ft_strncmp(argv[i], "--bench", 8) == 0)
+			f->bench = 1;
+		else
+			return (-1);
+		i++;
+	}
+	return (i);
 }

@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdlib.h>
 
 t_node		*new_node(int value)
 {
@@ -91,6 +90,8 @@ void	free_stack(t_stack *stack)
 {
 	t_node	*temp;
 
+	if (!stack)
+		return ;
 	if (!stack->size)
 	{
 		free(stack);
