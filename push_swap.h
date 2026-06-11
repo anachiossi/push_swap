@@ -27,6 +27,15 @@ typedef struct s_stack {
 	int			size;
 } t_stack;
 
+typedef struct s_flags
+{
+    int     adaptive;
+    int     simple;
+    int     medium;
+    int     complex;
+    int     bench;
+}   t_flags;
+
 // parsing — parse.c (ft_atoi from libft)
 int		validate_input(char **argv);
 int		validate_int_limits(char **argv);

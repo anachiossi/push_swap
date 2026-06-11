@@ -1,0 +1,71 @@
+PARSER:
+
+1 - parser input control need a FIX after FLAG implementation
+	 -> currently does not consider FLAGS, works for numbers only.
+2 - FLAG parser
+	-> reads argv[1] and [2]
+	-> max of flags per call = 2.
+	-> adaptive == no flag.
+		example:
+		--simple    forza O(n²)
+		--medium    forza O(n√n)
+		--complex   forza O(n log n)
+		--adaptive  forza adattivo (è il DEFAULT se non metti nessun flag)
+	-> flag struct:
+		typedef struct s_flags
+			int     adaptive;
+    			int     simple;
+    			int     medium;
+   			int     complex;
+    			int     bench;
+				
+SORTING:
+
+1 - CREATE hardcode special cases disorder == 0;
+2 - CREATE hardcode special cases disorder == 1;
+3 - CREATE hardcode special cases size == 1;
+4 - CREATE hardcode special cases size == 2;
+5 - CREATE hardcode special cases size == 3;
+
+6 - CREATE MEDIUM chunk sort O(n√n) or other 
+7 - CREATE COMPLEX radix LSD O(n log n) OR quicksort with optimum pivot
+
+8? - MAYBE? special case: very high size but very low disorder (selective insertion? target movements with rank and do selective action)
+
+AFTER SORTING OPTIMIZATION:
+
+1 - FIX : instead of printing directly, save all operations to a list of operations, 
+2 - CREATE the operation optimizer: read the list
+	if it finds ra & rb substitute for rr.
+	if it finds rra & rrb susbtitute for rrr.
+	if it finds sa & sb substitute for ss.
+3 - CREATE bench helper tools to COUNT how many operations of each were made: 
+	[bench] total_ops: 7997
+	[bench] sa: 0  sb: 0  ss: 0  pa: 500  pb: 500
+	[bench] ra: 4840  rb: 1098  rr: 0  rra: 0  rrb: 1059  rrr: 0
+
+
+OUTPUT CONTROL:
+
+1 - CREATE output option FLAG --bench
+
+		example:
+	[bench] disorder: 49.93%
+	[bench] strategy: Adaptive / O(n√n)
+	[bench] total_ops: 7997
+	[bench] sa: 0  sb: 0  ss: 0  pa: 500  pb: 500
+	[bench] ra: 4840  rb: 1098  rr: 0  rra: 0  rrb: 1059  rrr: 0
+
+
+2 - CLEAN normal output (we are using it as tests). if no flag --bench. 
+
+TOOLS:
+
+1 - CREATE separate tool for generating comand lines with 500 valid numbers as inputs
+2 - CREATE A operation O mesure: calculates Big O from input size and operation numbers. can use benchmark as input (would be nice)
+ 
+
+
+
+
+
