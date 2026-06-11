@@ -6,7 +6,7 @@
 /*   By: gsantoni <gsantoni@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 18:29:22 by gsantoni          #+#    #+#             */
-/*   Updated: 2026/06/11 09:58:34 by gsantoni         ###   ########.fr       */
+/*   Updated: 2026/06/11 11:13:39 by gsantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,7 @@ void	push(t_stack *stack, t_node *new);
 void	add_node_bottom(t_stack *stack, t_node *new);
 void	p(t_stack *x, t_stack *y);
 void	r(t_stack *x);
+void	r_r(t_stack *x);
+void	s(t_stack *x);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: gsantoni <gsantoni@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 18:45:55 by gsantoni          #+#    #+#             */
-/*   Updated: 2026/06/11 10:09:36 by gsantoni         ###   ########.fr       */
+/*   Updated: 2026/06/11 11:14:47 by gsantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,16 @@ int		main(void)
 	t_node	*a2 = new_node(6);
 	t_node	*a3 = new_node(7);
 
+	push(a, a1);
+	push(a, a2);
+	push(a, a3);
+	print_stack(a);
+	r_r(a);
+	print_stack(a);
+	r_r(a);
+	print_stack(a);
+
+	/*
 	t_stack *b = new_stack();
 	t_node	*b1 = new_node(8);
 	t_node	*b2 = new_node(9);
@@ -64,8 +74,8 @@ int		main(void)
 	printf("b: ");
 	print_stack(b);
 		
+	free_stack(a);*/
 	free_stack(a);
-	free_stack(b);
 	
 	return (0);
 }

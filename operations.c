@@ -6,7 +6,7 @@
 /*   By: gsantoni <gsantoni@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 18:32:09 by gsantoni          #+#    #+#             */
-/*   Updated: 2026/06/11 10:29:53 by anade-mo         ###   ########.fr       */
+/*   Updated: 2026/06/11 11:26:10 by gsantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,47 @@ void	p(t_stack *x, t_stack *y)
 {
 	push(y, pop(x));
 }
-// reverse, for ra, rb
+
+void	r(t_stack *x)
+{
+	t_node	*temp;
+
+	if (!x || x->size < 2)
+		return ;
+	temp = pop(x);
+	x->bottom->next = temp;
+	x->bottom = temp;
+	temp->next = NULL;
+}
+
+void	r_r(t_stack *x)
+{
+	t_node	*temp;
+
+	if (!x || x->size < 2)
+		return ;
+	temp = x->top;
+	while (temp->next != x->bottom)
+		temp = temp->next;
+	push(x, x->bottom);
+	temp->next = NULL;
+	x->bottom = temp;
+	x->size -= 1;
+}
+
+void	s(t_stack *x)
+{
+	t_node	*a;
+	t_node	*b;
+
+	a = pop(x);
+	b = pop(x);
+	push(x, a);
+	push(x, b);
+}
+
+
+/* reverse, for ra, rb
 void	r(t_stack *x)
 {
 	t_node	*temp;
@@ -48,7 +88,7 @@ void	r_r(t_stack *x)
 	temp->next = x->top;
 	x->top = temp;
 }
-/* se ci fosse un prev
+//se ci fosse un prev
 void	reverse_rotate2(t_stack *x)
 {
 	t_node	*temp;
@@ -63,7 +103,7 @@ void	reverse_rotate2(t_stack *x)
 	x->top->prev = temp;
 	x->top = temp;
 }
-*/
+
 // for sa, sb
 void	s(t_stack *x)
 {
@@ -77,4 +117,4 @@ void	s(t_stack *x)
 	x->top->next = temp;
 	if (!temp->next)
 		x->bottom = temp;
-}
+}*/

@@ -6,9 +6,12 @@
 /*   By: anade-mo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/11 10:29:16 by anade-mo          #+#    #+#             */
-/*   Updated: 2026/06/11 10:29:44 by anade-mo         ###   ########.fr       */
+/*   Updated: 2026/06/11 11:15:27 by gsantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "push_swap.h"
+#include <unistd.h>
 
 void	pa(t_stack *a, t_stack *b)
 {
