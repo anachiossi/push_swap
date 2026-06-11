@@ -31,8 +31,17 @@ void	free_stack(t_stack *stack);
 void	push(t_stack *stack, t_node *new);
 void	add_node_bottom(t_stack *stack, t_node *new);
 void	p(t_stack *x, t_stack *y);
+int		op_count(int add);
+void	sa(t_stack *a);
+void	pa(t_stack *a, t_stack *b);
+void	pb(t_stack *a, t_stack *b);
+void	ra(t_stack *a);
+void	rb(t_stack *b);
+void	rra(t_stack *a);
+void	rrb(t_stack *b);
 void	r(t_stack *x);
 void	r_r(t_stack *x);
 void	s(t_stack *x);
+void	bubble_sort(t_stack *a, t_stack *b);
 
 #endif

@@ -29,6 +29,7 @@ void	r(t_stack *x)
 	x->bottom->next = temp;
 	x->bottom = temp;
 	temp->next = NULL;
+	x->size += 1;
 }
 
 void	r_r(t_stack *x)

@@ -30,7 +30,7 @@ void	print_stack(t_stack *stack)
 }
 
 int		main(void)
-{
+{ /*
 	t_stack *a = new_stack();
 	t_node	*a1 = new_node(5);
 	t_node	*a2 = new_node(6);
@@ -44,6 +44,28 @@ int		main(void)
 	print_stack(a);
 	r_r(a);
 	print_stack(a);
+*/
+	t_stack	*a = new_stack();
+	t_stack	*b = new_stack();
+
+	add_node_bottom(a, new_node(3));
+	add_node_bottom(a, new_node(1));
+	add_node_bottom(a, new_node(4));
+	add_node_bottom(a, new_node(2));
+	add_node_bottom(a, new_node(5));
+
+	printf("before: ");
+	print_stack(a);
+
+	bubble_sort(a, b);
+
+	printf("after:  ");
+	print_stack(a);
+
+	printf("operations: %d\n", op_count(0));
+
+	free_stack(a);
+	free_stack(b);
 
 	/*
 	t_stack *b = new_stack();
@@ -73,9 +95,8 @@ int		main(void)
 	print_stack(a);
 	printf("b: ");
 	print_stack(b);
-		
+
 	free_stack(a);*/
-	free_stack(a);
-	
+
 	return (0);
 }
