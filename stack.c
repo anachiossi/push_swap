@@ -64,10 +64,27 @@ t_stack	*build_input_stack(int *arr, int size)
 
 void	assign_ranks(t_stack *a, int *arr, int size)
 {
-	// todo
-	(void)a;
-	(void)arr;
-	(void)size;
+	int rank;
+	t_node	*temp;
+	int i;
+	int j;
+
+	temp = a->top;
+	i = 0;
+	while (i < size)
+	{
+		rank = 0;
+		j = 0;
+		while (j < size)
+		{
+			if (arr[i] > arr[j])
+				rank++;
+			j++;
+		}
+		temp->rank = rank;
+		temp = temp->next;
+		i++;
+	}
 }
 
 void	free_stack(t_stack *stack)

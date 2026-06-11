@@ -29,6 +29,20 @@ void	print_stack(t_stack *stack)
 	}
 	printf("\n");
 }
+void	print_ranks(t_stack *stack)
+{
+	t_node		*temp;
+
+	if (!stack->size)
+		return ;
+	temp = stack->top;
+	while (temp)
+	{
+		printf("%d ", temp->rank);
+		temp = temp->next;
+	}
+	printf("\n");
+}
 int	main(int argc, char **argv)
 {
 	int		*arr;
@@ -46,16 +60,22 @@ int	main(int argc, char **argv)
 	if (!a || !b)
 		return (free(arr), free_stack(a), free_stack(b), write(2, "Error\n", 6), 1);
 	disorder = compute_disorder(a);
+	assign_ranks(a, arr, argc - 1);
 	printf("before: ");
 	print_stack(a);
+	printf("rank order:");
+	print_ranks(a);
 	printf("disorder: %.2f\n", disorder);
+	
 
 	bubble_sort(a, b);
 
 	printf("after:  ");
 	print_stack(a);
+	printf("rank order:");
+	print_ranks(a);
 	printf("disorder: %.2f\n", compute_disorder(a));
-	
+
 	printf("operations: %d\n", op_count(0));
 
 	free_stack(a);

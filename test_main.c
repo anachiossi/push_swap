@@ -28,7 +28,20 @@ void	print_stack(t_stack *stack)
 	}
 	printf("\n");
 }
+void	print_ranks(t_stack *stack)
+{
+	t_node		*temp;
 
+	if (!stack->size)
+		return ;
+	temp = stack->top;
+	while (temp)
+	{
+		printf("%d ", temp->rank);
+		temp = temp->next;
+	}
+	printf("\n");
+}
 int		main(void)
 { /*
 	t_stack *a = new_stack();
@@ -56,11 +69,13 @@ int		main(void)
 
 	printf("before: ");
 	print_stack(a);
+	print_ranks(a);
 
 	bubble_sort(a, b);
 
 	printf("after:  ");
 	print_stack(a);
+	print_ranks(a);
 
 	printf("operations: %d\n", op_count(0));
 
