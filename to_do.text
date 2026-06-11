@@ -1,8 +1,8 @@
 PARSER:
 
-1 - parser input control need a FIX after FLAG implementation
+OK 1 - parser input control need a FIX after FLAG implementation
 	 -> currently does not consider FLAGS, works for numbers only.
-2 - FLAG parser
+OK 2 - FLAG parser
 	-> reads argv[1] and [2]
 	-> max of flags per call = 2.
 	-> adaptive == no flag.
@@ -13,11 +13,8 @@ PARSER:
 		--adaptive  forza adattivo (è il DEFAULT se non metti nessun flag)
 	-> flag struct:
 		typedef struct s_flags
-			int     adaptive;
-    			int     simple;
-    			int     medium;
-   			int     complex;
-    			int     bench;
+			int 	level; 0 = normal adaptive, 1 simple, 2 medium, 3 complex.
+    		int     bench; boolean
 				
 SORTING:
 
