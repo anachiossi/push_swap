@@ -38,54 +38,36 @@ t_stack		*new_stack(void)
 	return (stack);
 }
 
-void	push(t_stack *stack, t_node *new)
+t_stack	*build_input_stack(int *arr, int size)
 {
-	if (!stack || !new)
-		return ;
-	if (!stack->size)
-	{
-		stack->top = new;
-		stack->bottom = new;
-	}
-	else
-	{
-		new->next = stack->top;
-		stack->top = new;
-	}
-	stack->size += 1;
-}
-
-t_node	*pop(t_stack *stack)
-{
-	t_node	*temp;
-
-	if (!stack || !stack->size)
+	t_stack	*a;
+	t_node	*new;
+	int		i;
+	
+	a = new_stack();
+	if (!a)
 		return (NULL);
-	temp = stack->top;
-	stack->top = temp->next;
-	temp->next = NULL;
-	if (stack->bottom == temp)
-		stack->bottom = NULL;
-	stack->size -= 1;
-	return (temp);
+	i = 0;
+	while (i < size)
+	{
+		new = new_node(arr[i]);
+		if (!new)
+		{
+			free_stack(a);
+			return (NULL);
+		}
+		push_bottom(a, new);
+		i++;
+	}
+	return (a);
 }
 
-//non penso che ci serva
-void	add_node_bottom(t_stack *stack, t_node *new)
+void	assign_ranks(t_stack *a, int *arr, int size)
 {
-	if (!stack || !new)
-		return ;
-	if (!stack->size)
-	{
-		stack->top = new;
-		stack->bottom = new;
-	}
-	else
-	{
-		stack->bottom->next = new;
-		stack->bottom = new;
-	}
-	stack->size += 1;
+	// todo
+	(void)a;
+	(void)arr;
+	(void)size;
 }
 
 void	free_stack(t_stack *stack)

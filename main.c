@@ -11,8 +11,9 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
+#include <stdio.h>
 
 void	print_stack(t_stack *stack)
 {
@@ -28,75 +29,48 @@ void	print_stack(t_stack *stack)
 	}
 	printf("\n");
 }
+int	main(int argc, char **argv)
+{
+	int		*arr;
+	float	disorder;
+	t_stack	*a;
+	t_stack	*b;
 
-int		main(void)
-{ /*
-	t_stack *a = new_stack();
-	t_node	*a1 = new_node(5);
-	t_node	*a2 = new_node(6);
-	t_node	*a3 = new_node(7);
-
-	push(a, a1);
-	push(a, a2);
-	push(a, a3);
-	print_stack(a);
-	r_r(a);
-	print_stack(a);
-	r_r(a);
-	print_stack(a);
-*/
-	t_stack	*a = new_stack();
-	t_stack	*b = new_stack();
-
-	add_node_bottom(a, new_node(3));
-	add_node_bottom(a, new_node(1));
-	add_node_bottom(a, new_node(4));
-	add_node_bottom(a, new_node(2));
-	add_node_bottom(a, new_node(5));
-
+	if (argc < 2)
+		return (0);
+	if (validate_input(argv) == -1 || input_to_array(argc, argv) == NULL)
+		return (write(2, "Error\n", 6), 1);
+	arr = input_to_array(argc, argv);
+	a = build_input_stack(arr, argc - 1);
+	b = new_stack();
+	if (!a || !b)
+		return (free(arr), free_stack(a), free_stack(b), write(2, "Error\n", 6), 1);
+	disorder = compute_disorder(a);
 	printf("before: ");
 	print_stack(a);
+	printf("disorder: %.2f\n", disorder);
 
 	bubble_sort(a, b);
 
 	printf("after:  ");
 	print_stack(a);
-
+	printf("disorder: %.2f\n", compute_disorder(a));
+	
 	printf("operations: %d\n", op_count(0));
 
 	free_stack(a);
 	free_stack(b);
-
-	/*
-	t_stack *b = new_stack();
-	t_node	*b1 = new_node(8);
-	t_node	*b2 = new_node(9);
-	t_node	*b3 = new_node(10);
-
-	pop(a);
-	pop(b);
-	push(a, a1);
-	push(b, b1);
-	//print_stack(a);
-	push(a, a2);
-	push(b, b2);
-	//print_stack(a);
-	push(a, a3);
-	push(b, b3);
-	//print_stack(a);
-	//r(a);
-	printf("a: ");
-	print_stack(a);
-	printf("b: ");
-	print_stack(b);
-	p(a, b);
-	printf("========\n");
-	printf("a: ");
-	print_stack(a);
-	printf("b: ");
-	print_stack(b);
-
-	free_stack(a);*/
-
 	return (0);
 }
+
+/*
+	assign_ranks(a, arr, argc - 1);
+	disorder = compute_disorder(a);
+	if (disorder == 0)
+		return (free_stack(a), free_stack(b), 0);
+	dispatcher(a, b, disorder);
+	free(arr);
+	free_stack(a);
+	free_stack(b);
+	return (0);
+*/

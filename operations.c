@@ -26,10 +26,7 @@ void	r(t_stack *x)
 	if (!x || x->size < 2)
 		return ;
 	temp = pop(x);
-	x->bottom->next = temp;
-	x->bottom = temp;
-	temp->next = NULL;
-	x->size += 1;
+	push_bottom(x, temp);
 }
 
 void	r_r(t_stack *x)
@@ -38,13 +35,8 @@ void	r_r(t_stack *x)
 
 	if (!x || x->size < 2)
 		return ;
-	temp = x->top;
-	while (temp->next != x->bottom)
-		temp = temp->next;
-	push(x, x->bottom);
-	temp->next = NULL;
-	x->bottom = temp;
-	x->size -= 1;
+	temp = pop_bottom(x);
+	push(x, temp);
 }
 
 void	s(t_stack *x)
