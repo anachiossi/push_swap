@@ -33,18 +33,41 @@ t_stack		*new_stack(void)
 	if (!stack)
 		return (NULL);
 	stack->top = NULL;
+	stack->bottom = NULL;
 	stack->size = 0;
 	return (stack);
 }
 
-void	append(t_stack *stack, t_node *new)
+void	add_node_top(t_stack *stack, t_node *new)
 {
-	t_node	*temp;
-
 	if (!stack || !new)
 		return ;
-	new->next = stack->top;
-	stack->top = new;
+	if (!stack->size)
+	{
+		stack->top = new;
+		stack->bottom = new;
+	}
+	else
+	{
+		new->next = stack->top;
+		stack->top = new;
+	}
+	stack->size += 1;
+}
+void	add_node_bottom(t_stack *stack, t_node *new)
+{
+	if (!stack || !new)
+		return ;
+	if (!stack->size)
+	{
+		stack->top = new;
+		stack->bottom = new;
+	}
+	else
+	{
+		stack->bottom->next = new;
+		stack->bottom = new;
+	}
 	stack->size += 1;
 }
 

@@ -21,7 +21,11 @@ void	p(t_stack *x, t_stack *y)
 		return ;
 	temp = x->top;
 	x->top = temp->next;
+	if (x->size == 1)
+		x->bottom = NULL;
 	temp->next = y->top;
+	if (!y->size)
+		y->bottom = temp;
 	y->top = temp;
 	y->size += 1;
 	x->size -= 1;

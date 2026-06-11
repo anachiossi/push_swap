@@ -39,10 +39,10 @@ int		main(void)
 	t_node	*b1 = new_node(7);
 	t_node	*b2 = new_node(8);
 
-	append(a, a1);
-	append(a, a2);
-	append(b, b1);
-	append(b, b2);
+	add_node_top(a, a1);
+	add_node_top(a, a2);
+	add_node_top(b, b1);
+	add_node_top(b, b2);
 
 	printf("a: ");
 	print_stack(a);
