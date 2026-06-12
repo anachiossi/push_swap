@@ -6,7 +6,7 @@
 /*   By: gsantoni <gsantoni@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 18:29:22 by gsantoni          #+#    #+#             */
-/*   Updated: 2026/06/11 11:13:39 by gsantoni         ###   ########.fr       */
+/*   Updated: 2026/06/12 17:27:54 by gsantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,24 +39,28 @@ typedef struct s_flags
 }   t_flags;
 
 // parsing — parse.c (ft_atoi from libft)
+int		is_valid(char *s);
+int		input_to_stack(char **arg, t_stack *a);
+int		assign_flags(t_flags *f, char **argv, int argc);
+/*
+void	assign_ranks(t_stack *a);
 int		validate_input(char **argv);
 int		validate_int_limits(char **argv);
 int		*input_to_array(int size, char **argv);
 int		validate_int_duplicates(int *arr, int size);
-int		assign_flags(t_flags *f, char **argv, int argc);
+t_stack	*build_input_stack(int *arr, int size);
+*/
 
 // stack creation — stack.c
-t_node	*new_node(int value);
-t_stack	*new_stack(void);
-t_stack	*build_input_stack(int *arr, int size);
-void	assign_ranks(t_stack *a, int *arr, int size);
-void	free_stack(t_stack *stack);
+t_node		*new_node(int value);
+t_stack		*new_stack(void);
+void		free_stack(t_stack *stack);
 
 //stack manipulation — stack_utils.c
 void	push(t_stack *stack, t_node *new);
-void	push_bottom(t_stack *stack, t_node *new);
 t_node	*pop(t_stack *stack);
 t_node	*pop_bottom(t_stack *stack);
+//void	push_bottom(t_stack *stack, t_node *new);
 
 //base operations — operations.c
 void	p(t_stack *x, t_stack *y);
@@ -82,13 +86,9 @@ void	dispatcher(t_stack *a, t_stack *b, t_flags f); // to do: flags
 //disorder computation — disorder.c
 float	compute_disorder(t_stack *h);
 
-//sorting — sort_simple.c
+//sorting — sort.c
 void	bubble_sort(t_stack *a, t_stack *b);
-
-//sorting — sort_medium.c
 void	chunk_sort(t_stack *a, t_stack *b); // to do
-
-//sorting — sort_complex.c
 void	radix_sort(t_stack *a, t_stack *b); // to do
 
 //sorting — sort_special.c
@@ -99,7 +99,7 @@ void	sort_inverted(t_stack *a, t_stack *b); //to do
 
 //printing - printers.c
 void	print_stack(t_stack *stack);
-void	print_ranks(t_stack *stack);
+//void	print_ranks(t_stack *stack);
 //void	print_operations(t_list operations *ops); // to think
 //void	print_bench(t_stack *a, t_stack *b, t_list operations *ops); // to think
 

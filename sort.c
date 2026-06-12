@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   easy_sort.c                                        :+:      :+:    :+:   */
+/*   sort.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anade-mo <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: gsantoni <gsantoni@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/11 11:14:12 by anade-mo          #+#    #+#             */
-/*   Updated: 2026/06/11 11:24:04 by anade-mo         ###   ########.fr       */
+/*   Created: 2026/06/12 15:59:56 by gsantoni          #+#    #+#             */
+/*   Updated: 2026/06/12 16:00:57 by gsantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,14 @@ void	bubble_sort(t_stack *a, t_stack *b)
 		pa(a, b);
 }
 
+void	chunk_sort(t_stack *a, t_stack *b)
+{
+	(void)a;
+	(void)b;
+}
 
+void	radix_sort(t_stack *a, t_stack *b)
+{
+	(void)a;
+	(void)b;
+}

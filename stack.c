@@ -6,7 +6,7 @@
 /*   By: gsantoni <gsantoni@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 19:42:37 by gsantoni          #+#    #+#             */
-/*   Updated: 2026/06/11 10:10:09 by gsantoni         ###   ########.fr       */
+/*   Updated: 2026/06/12 17:33:22 by gsantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,55 +37,6 @@ t_stack		*new_stack(void)
 	return (stack);
 }
 
-t_stack	*build_input_stack(int *arr, int size)
-{
-	t_stack	*a;
-	t_node	*new;
-	int		i;
-	
-	a = new_stack();
-	if (!a)
-		return (NULL);
-	i = 0;
-	while (i < size)
-	{
-		new = new_node(arr[i]);
-		if (!new)
-		{
-			free_stack(a);
-			return (NULL);
-		}
-		push_bottom(a, new);
-		i++;
-	}
-	return (a);
-}
-
-void	assign_ranks(t_stack *a, int *arr, int size)
-{
-	int rank;
-	t_node	*temp;
-	int i;
-	int j;
-
-	temp = a->top;
-	i = 0;
-	while (i < size)
-	{
-		rank = 0;
-		j = 0;
-		while (j < size)
-		{
-			if (arr[i] > arr[j])
-				rank++;
-			j++;
-		}
-		temp->rank = rank;
-		temp = temp->next;
-		i++;
-	}
-}
-
 void	free_stack(t_stack *stack)
 {
 	t_node	*temp;
@@ -102,4 +53,19 @@ void	free_stack(t_stack *stack)
 	stack->size -= 1;
 	free(temp);
 	free_stack(stack);
+}
+
+void	print_stack(t_stack *stack)
+{
+	t_node		*temp;
+
+	if (!stack->size)
+		return ;
+	temp = stack->top;
+	while (temp)
+	{
+		printf("%d ", temp->value);
+		temp = temp->next;
+	}
+	printf("\n");
 }

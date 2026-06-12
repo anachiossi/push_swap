@@ -1,3 +1,5 @@
 en.subject.pdf
 *.o
 *.swp
+.vscode/
+test_main

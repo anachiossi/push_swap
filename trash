@@ -1,0 +1,233 @@
+/*t_stack		*build_input_stack(int *arr, int size)
+{
+	t_stack	*a;
+	t_node	*new;
+	int		i;
+	
+	a = new_stack();
+	if (!a)
+		return (NULL);
+	i = 0;
+	while (i < size)
+	{
+		new = new_node(arr[i]);
+		if (!new)
+		{
+			free_stack(a);
+			return (NULL);
+		}
+		push_bottom(a, new);
+		i++;
+	}
+	return (a);
+}
+
+must be integer, no special chars, no empty strings
+int	validate_input(char **arg_nbr)
+{
+	int	i;
+	int	j;
+	i = 0;
+	while (arg_nbr[i])
+	{
+		j = 0;
+		if (arg_nbr[i][j] == '-' || arg_nbr[i][j] == '+')
+			j++;
+		if (arg_nbr[i][j] == '\0')
+			return (-1);
+		while (arg_nbr[i][j])
+		{
+			if (!ft_isdigit(arg_nbr[i][j]))
+				return (-1);
+			j++;
+		}
+		i++;
+	}
+	if (validate_int_limits(arg_nbr) == -1)
+		return (-1);
+	return (1);
+}
+
+int validate_int_limits(char **arg_nbr)
+{
+	size_t	len;
+	char	*ptr;
+	int 	i;
+	
+	i = 0;
+	while (arg_nbr[i])
+	{
+		ptr = arg_nbr[i];
+		if (ptr[0] == '-' || ptr[0] == '+')
+			ptr++;
+		len = ft_strlen(ptr);
+		if (len > 10)
+			return (-1);
+		if (len == 10)
+		{
+			if (arg_nbr[i][0] == '-' && ft_strncmp(ptr, "2147483648", 10) > 0)
+				return (-1);
+			if (arg_nbr[i][0] != '-' && ft_strncmp(ptr, "2147483647", 10) > 0)
+				return (-1);
+		}
+		i++;
+	}
+	return (1);
+}
+
+int	*input_to_array(int size, char **arg_nbr)
+{
+	int	*arr;
+	int	i;
+
+	if (validate_input(arg_nbr) == -1)
+		return (NULL);
+	arr = (int *)malloc(sizeof(int) * size);
+	if (!arr)
+		return (NULL);
+	i = 0;
+	while (i < size)
+	{
+		arr[i] = ft_atoi(arg_nbr[i]);
+		i++;
+	}
+	if (validate_int_duplicates(arr, size) == -1)
+	{
+		free(arr);
+		return (NULL);
+	}
+	return (arr);
+}
+
+int	validate_int_duplicates(int *arr, int size)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < size)
+	{
+		j = i + 1;
+		while (j < size)
+		{
+			if (arr[i] == arr[j])
+				return (-1);
+			j++;
+		}
+		i++;
+	}
+	return (1);
+}
+	
+void	push_bottom(t_stack *stack, t_node *new)
+{
+	if (!stack || !new)
+		return ;
+	if (!stack->size)
+	{
+		stack->top = new;
+		stack->bottom = new;
+	}
+	else
+	{
+		stack->bottom->next = new;
+		stack->bottom = new;
+	}
+	stack->size += 1;
+}
+	
+reverse, for ra, rb
+void	r(t_stack *x)
+{
+	t_node	*temp;
+
+	if (!x || x->size < 2)
+		return ;
+	temp = x->top;
+	x->top = temp->next;
+	x->bottom->next = temp;
+	x->bottom = temp;
+	temp->next = NULL;
+}
+// reverse rotate, for rra rrb
+void	r_r(t_stack *x)
+{
+	t_node	*temp;
+	t_node	*new_bottom;
+
+	if (x->size < 2)
+		return ;
+	new_bottom = x->top;
+	while (new_bottom->next != x->bottom)
+		new_bottom = new_bottom->next;
+	temp = x->bottom;
+	new_bottom->next = NULL;
+	x->bottom = new_bottom;
+	temp->next = x->top;
+	x->top = temp;
+}
+//se ci fosse un prev
+void	reverse_rotate2(t_stack *x)
+{
+	t_node	*temp;
+
+	if (x->size < 2)
+		return ;
+	temp = x->bottom;
+	x->bottom = temp->prev;
+	x->bottom->next = NULL;
+	temp->prev = NULL;
+	temp->next = x->top;
+	x->top->prev = temp;
+	x->top = temp;
+}
+
+// for sa, sb
+void	s(t_stack *x)
+{
+	t_node	*temp;
+
+	if (x->size < 2)
+		return ;
+	temp = x->top;
+	x->top = temp->next;
+	temp->next = x->top->next;
+	x->top->next = temp;
+	if (!temp->next)
+		x->bottom = temp;
+}
+		
+void	print_ranks(t_stack *stack)
+{
+	t_node		*temp;
+
+	if (!stack->size)
+		return ;
+	temp = stack->top;
+	while (temp)
+	{
+		printf("%d ", temp->rank);
+		temp = temp->next;
+	}
+	printf("\n");
+}
+	
+// still uses a while, has to find the prev to bottom on every move
+t_node	*pop_bottom(t_stack *stack)
+{
+	t_node	*temp;
+	t_node	*new_bottom;
+
+	if (!stack || !stack->size)
+		return (NULL);
+	if (stack->size == 1)
+		return (pop(stack));
+	new_bottom = stack->top;
+	while (new_bottom->next != stack->bottom)
+		new_bottom = new_bottom->next;
+	temp = stack->bottom;
+	new_bottom->next = NULL;
+	stack->bottom = new_bottom;
+	stack->size -= 1;
+	return (temp);
+}*/
