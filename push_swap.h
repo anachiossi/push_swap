@@ -6,7 +6,7 @@
 /*   By: gsantoni <gsantoni@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 18:29:22 by gsantoni          #+#    #+#             */
-/*   Updated: 2026/06/12 17:27:54 by gsantoni         ###   ########.fr       */
+/*   Updated: 2026/06/12 17:45:07 by gsantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,14 +42,6 @@ typedef struct s_flags
 int		is_valid(char *s);
 int		input_to_stack(char **arg, t_stack *a);
 int		assign_flags(t_flags *f, char **argv, int argc);
-/*
-void	assign_ranks(t_stack *a);
-int		validate_input(char **argv);
-int		validate_int_limits(char **argv);
-int		*input_to_array(int size, char **argv);
-int		validate_int_duplicates(int *arr, int size);
-t_stack	*build_input_stack(int *arr, int size);
-*/
 
 // stack creation — stack.c
 t_node		*new_node(int value);
@@ -60,7 +52,6 @@ void		free_stack(t_stack *stack);
 void	push(t_stack *stack, t_node *new);
 t_node	*pop(t_stack *stack);
 t_node	*pop_bottom(t_stack *stack);
-//void	push_bottom(t_stack *stack, t_node *new);
 
 //base operations — operations.c
 void	p(t_stack *x, t_stack *y);
@@ -81,10 +72,8 @@ void	rra(t_stack *a);
 void	rrb(t_stack *b);
 
 //adaptive algorithm — dispatcher.c
-void	dispatcher(t_stack *a, t_stack *b, t_flags f); // to do: flags
-
-//disorder computation — disorder.c
-float	compute_disorder(t_stack *h);
+void	dispatcher(t_stack *a, t_stack *b, t_flags f);
+float	disorder(t_stack *h);
 
 //sorting — sort.c
 void	bubble_sort(t_stack *a, t_stack *b);

@@ -6,7 +6,7 @@
 /*   By: gsantoni <gsantoni@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 18:45:55 by gsantoni          #+#    #+#             */
-/*   Updated: 2026/06/12 17:29:20 by gsantoni         ###   ########.fr       */
+/*   Updated: 2026/06/12 17:43:27 by gsantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,26 +23,21 @@ int	main(int argc, char **argv)
 		return (0);
 	a = new_stack();
 	if (!input_to_stack(&argv[assign_flags(&f, argv, argc)], a))
-		write(1, "Error!\n", 7);
-	//assign_ranks(a);
+		write(1, "Error\n", 6);
 	b = new_stack();
 	if (!b)
-		write(1, "Error!\n", 7);
+		write(1, "Error\n", 6);
 
-	float disorder = compute_disorder(a);
+	float d = disorder(a);
 	printf("before: ");
 	print_stack(a);
-	//printf("rank order:");
-	//print_ranks(a);
-	printf("disorder: %.2f\n", disorder);
+	printf("disorder: %.2f%\n", d);
 	
 	dispatcher(a, b, f);
 
 	printf("after:  ");
 	print_stack(a);
-	//printf("rank order:");
-	//print_ranks(a);
-	printf("disorder: %.2f\n", compute_disorder(a));
+	printf("disorder: %.2f%\n", disorder(a));
 
 	printf("operations: %d\n", op_count(0));
 

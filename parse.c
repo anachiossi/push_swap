@@ -6,7 +6,7 @@
 /*   By: gsantoni <gsantoni@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/11 14:00:15 by anade-mo          #+#    #+#             */
-/*   Updated: 2026/06/12 16:37:12 by gsantoni         ###   ########.fr       */
+/*   Updated: 2026/06/12 17:44:03 by gsantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,25 +91,4 @@ int		assign_flags(t_flags *f, char **argv, int argc)
 		i++;
 	}
 	return (i);
-}
-
-void	assign_ranks(t_stack *a)
-{
-	int 	r;
-	t_node	*n;
-	t_node	*t;
-
-	n = a->top;
-	while (n)
-	{
-		r = 0;
-		t = a->top;
-		while (t)
-		{
-			r += (n->value > t->value) && (n != t);
-			t = t->next;
-		}
-		n->rank = r;
-		n = n->next;
-	}
 }

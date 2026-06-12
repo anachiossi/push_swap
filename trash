@@ -230,4 +230,25 @@ t_node	*pop_bottom(t_stack *stack)
 	stack->bottom = new_bottom;
 	stack->size -= 1;
 	return (temp);
+}
+	
+void	assign_ranks(t_stack *a)
+{
+	int 	r;
+	t_node	*n;
+	t_node	*t;
+
+	n = a->top;
+	while (n)
+	{
+		r = 0;
+		t = a->top;
+		while (t)
+		{
+			r += (n->value > t->value) && (n != t);
+			t = t->next;
+		}
+		n->rank = r;
+		n = n->next;
+	}
 }*/

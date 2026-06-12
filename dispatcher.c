@@ -3,29 +3,53 @@
 /*                                                        :::      ::::::::   */
 /*   dispatcher.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anade-mo <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: gsantoni <gsantoni@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/11 00:00:00 by anade-mo          #+#    #+#             */
-/*   Updated: 2026/06/11 00:00:00 by anade-mo         ###   ########.fr       */
+/*   Updated: 2026/06/12 17:44:38 by gsantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+float	disorder(t_stack *x)
+{
+	int	m;
+	int	p;
+	t_node	*a;
+	t_node	*b;
+
+	if (!x || x->size < 2)
+		return ((float)0);
+	p = 0;
+	m = 0;
+	a = x->top;
+	while (a->next)
+	{
+		b = a->next;
+		while (b)
+		{
+			p += 1;
+			m += (a->value > b->value);
+			b = b->next;
+		}
+		a = a->next;
+	}
+	return (((float)m / (float)p) * (float)100);
+}
+
 void	dispatcher(t_stack *a, t_stack *b, t_flags f)
 {
-	float	disorder;
+	float	d;
 
-	disorder = compute_disorder(a);	
-	if (disorder == 0 || disorder == 1 || a->size <= 3 )
+	d = disorder(a);	
+	if (d == 0 || d == 1 || a->size <= 3 )
 		special_sort(a, b);
-	else if (disorder <= 0.2 || f.level == 1)
+	else if (d <= 0.2 || f.level == 1)
 		bubble_sort(a, b);
-	else if (disorder <= 0.5 || f.level == 2)
+	else if (d <= 0.5 || f.level == 2)
 		chunk_sort(a, b);
-	else if (disorder < 1 || f.level == 3)
+	else if (d < 1 || f.level == 3)
 		radix_sort(a, b); 
 	//	quick_sort(a, b); //
 }
-	
-	
