@@ -1,51 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   operations.c                                       :+:      :+:    :+:   */
+/*   operations_rr.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gsantoni <gsantoni@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/10 18:32:09 by gsantoni          #+#    #+#             */
-/*   Updated: 2026/06/12 17:28:36 by gsantoni         ###   ########.fr       */
+/*   Created: 2026/06/12 18:13:05 by gsantoni          #+#    #+#             */
+/*   Updated: 2026/06/12 18:34:35 by gsantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdlib.h>
 
-// push, for pa, pb
-void	p(t_stack *x, t_stack *y)
+void	rra(int bench, t_stack *a)
 {
-	push(y, pop(x));
+	r_r(a);
+	op_count(8);
+	if(!bench)
+		write(1, "rra\n", 4);
 }
 
-void	r(t_stack *x)
+void	rrb(int bench, t_stack *b)
 {
-	t_node	*temp;
-
-	if (!x || x->size < 2)
-		return ;
-	temp = pop(x);
-	push_bottom(x, temp);
+	r_r(b);
+	op_count(9);
+	if(!bench)
+		write(1, "rrb\n", 4);
 }
 
-void	r_r(t_stack *x)
+void	rrr(int bench, t_stack *a, t_stack *b)
 {
-	t_node	*temp;
-
-	if (!x || x->size < 2)
-		return ;
-	temp = pop_bottom(x);
-	push(x, temp);
-}
-
-void	s(t_stack *x)
-{
-	t_node	*a;
-	t_node	*b;
-
-	a = pop(x);
-	b = pop(x);
-	push(x, a);
-	push(x, b);
+	r_r(a);
+	r_r(b);
+	op_count(10);
+	if(!bench)
+		write(1, "rrb\n", 4);
 }

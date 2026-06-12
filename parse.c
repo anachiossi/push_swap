@@ -6,10 +6,11 @@
 /*   By: gsantoni <gsantoni@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/11 14:00:15 by anade-mo          #+#    #+#             */
-/*   Updated: 2026/06/12 17:44:03 by gsantoni         ###   ########.fr       */
+/*   Updated: 2026/06/12 18:56:18 by gsantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
 #include "push_swap.h"
 
 int		is_valid(char *s)
@@ -91,4 +92,13 @@ int		assign_flags(t_flags *f, char **argv, int argc)
 		i++;
 	}
 	return (i);
+}
+
+void	benchmode(int d, int *n)
+{
+	printf("[bench] disorder: %d%%\n", d);
+	printf("[bench] strategy: %s\n", "...");
+	printf("[bench] total ops: %d\n", n[11] - 1);
+	printf("[bench] sa: %d\t sb: %d\t ss: %d\t pa: %d\t pb: %d\n", n[0], n[1], n[2], n[3], n[4]);
+	printf("[bench] ra: %d\t rb: %d\t rr: %d\t rra: %d\t rrb: %d\t rrr: %d\n", n[5], n[6], n[7], n[8], n[9], n[10]);
 }

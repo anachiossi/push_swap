@@ -3,23 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   sort_special.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anade-mo <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: gsantoni <gsantoni@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/11 19:48:54 by anade-mo          #+#    #+#             */
-/*   Updated: 2026/06/11 20:11:26 by anade-mo         ###   ########.fr       */
+/*   Updated: 2026/06/12 18:45:28 by gsantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	special_sort(t_stack *a, t_stack *b)
+void	special_sort(int bench, t_stack *a, t_stack *b)
 {
-	float	disorder;
+	float	d;
 
-	disorder = compute_disorder(a);
-	if (disorder == 0)
+	d = disorder(a);
+	if (d == 0)
 		return ;
-	else if (disorder == 1)
+	else if (d == 1)
 		sort_inverted(a, b);
 	else if (a->size == 2)
 		sort_2(a, b);

@@ -1,41 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rotate.c                                           :+:      :+:    :+:   */
+/*   operations_r.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gsantoni <gsantoni@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/11 13:58:00 by anade-mo          #+#    #+#             */
-/*   Updated: 2026/06/12 16:38:17 by gsantoni         ###   ########.fr       */
+/*   Updated: 2026/06/12 18:34:02 by gsantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ra(t_stack *a)
+void	ra(int bench, t_stack *a)
 {
 	r(a);
-	op_count(1);
-	write(1, "ra\n", 3);
+	op_count(5);
+	if (!bench)
+		write(1, "ra\n", 3);
 }
 
-void	rb(t_stack *b)
+void	rb(int bench, t_stack *b)
 {
 	r(b);
-	op_count(1);
-	write(1, "rb\n", 3);
+	op_count(6);
+	if (!bench)
+		write(1, "rb\n", 3);
 }
 
-void	rra(t_stack *a)
+void	rr(int bench, t_stack *a, t_stack *b)
 {
-	r_r(a);
-	op_count(1);
-	write(1, "rra\n", 4);
-}
-
-void	rrb(t_stack *b)
-{
-	r_r(b);
-	op_count(1);
-	write(1, "rrb\n", 4);
+	r(a);
+	r(b);
+	op_count(7);
+	if (!bench)
+		write(1, "rb\n", 3);
 }

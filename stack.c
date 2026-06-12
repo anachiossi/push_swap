@@ -6,11 +6,12 @@
 /*   By: gsantoni <gsantoni@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 19:42:37 by gsantoni          #+#    #+#             */
-/*   Updated: 2026/06/12 17:33:22 by gsantoni         ###   ########.fr       */
+/*   Updated: 2026/06/12 18:50:06 by gsantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include <stdio.h>
 
 t_node		*new_node(int value)
 {

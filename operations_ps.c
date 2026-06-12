@@ -1,42 +1,54 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_count.c                                      :+:      :+:    :+:   */
+/*   operations_ps.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anade-mo <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: gsantoni <gsantoni@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/11 10:29:16 by anade-mo          #+#    #+#             */
-/*   Updated: 2026/06/11 13:59:29 by anade-mo         ###   ########.fr       */
+/*   Updated: 2026/06/12 18:52:33 by gsantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	op_count(int add)
-{
-	static int	count = 0;
-
-	count += add;
-	return (count);
-}
-
-void	sa(t_stack *a)
+void	sa(int bench, t_stack *a)
 {
 	s(a);
-	op_count(1);
-	write(1, "sa\n", 3);
+	op_count(0);
+	if (!bench)
+		write(1, "sa\n", 3);
 }
 
-void	pa(t_stack *a, t_stack *b)
+void	sb(int bench, t_stack *b)
+{
+	s(b);
+	op_count(1);
+	if (!bench)
+		write(1, "sa\n", 3);
+}
+
+void	ss(int bench, t_stack *a, t_stack *b)
+{
+	s(a);
+	s(b);
+	op_count(2);
+	if (!bench)
+		write(1, "sa\n", 3);
+}
+
+void	pa(int bench, t_stack *a, t_stack *b)
 {
 	p(b, a);
-	op_count(1);
-	write(1, "pa\n", 3);
+	op_count(3);
+	if (!bench)
+		write(1, "pa\n", 3);
 }
 
-void	pb(t_stack *a, t_stack *b)
+void	pb(int bench, t_stack *a, t_stack *b)
 {
 	p(a, b);
-	op_count(1);
-	write(1, "pb\n", 3);
+	op_count(4);
+	if (!bench)
+		write(1, "pb\n", 3);
 }

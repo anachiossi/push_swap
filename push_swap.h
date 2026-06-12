@@ -6,7 +6,7 @@
 /*   By: gsantoni <gsantoni@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 18:29:22 by gsantoni          #+#    #+#             */
-/*   Updated: 2026/06/12 17:45:07 by gsantoni         ###   ########.fr       */
+/*   Updated: 2026/06/12 18:50:41 by gsantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,8 @@
 #include <unistd.h>
 #include <stdlib.h>
 
-//rank is 0 if smallest, size-1 if biggest.
 typedef struct s_node {
 	int				value;
-	int				rank;
 	struct s_node	*next;
 } t_node;
 
@@ -42,54 +40,57 @@ typedef struct s_flags
 int		is_valid(char *s);
 int		input_to_stack(char **arg, t_stack *a);
 int		assign_flags(t_flags *f, char **argv, int argc);
+void	benchmode(int d, int *n);
 
 // stack creation — stack.c
 t_node		*new_node(int value);
 t_stack		*new_stack(void);
 void		free_stack(t_stack *stack);
+void		print_stack(t_stack *stack);
 
 //stack manipulation — stack_utils.c
 void	push(t_stack *stack, t_node *new);
 t_node	*pop(t_stack *stack);
+void	push_bottom(t_stack *stack, t_node *new);
 t_node	*pop_bottom(t_stack *stack);
 
-//base operations — operations.c
+//base operations — operations_base.c
+int	*op_count(int k);
 void	p(t_stack *x, t_stack *y);
 void	r(t_stack *x);
 void	r_r(t_stack *x);
 void	s(t_stack *x);
 
-//push swap operations — print_count.c
-int		op_count(int add);
-void	sa(t_stack *a);
-void	pa(t_stack *a, t_stack *b);
-void	pb(t_stack *a, t_stack *b);
+//push swap operations — operations_ps.c
+void	sa(int bench, t_stack *a);
+void	sb(int bench, t_stack *b);
+void	ss(int bench, t_stack *a, t_stack *b);
+void	pa(int bench, t_stack *a, t_stack *b);
+void	pb(int bench, t_stack *a, t_stack *b);
 
-//rotate operations — rotate.c
-void	ra(t_stack *a);
-void	rb(t_stack *b);
-void	rra(t_stack *a);
-void	rrb(t_stack *b);
+// rotate operations — operations_r.c
+void	ra(int bench, t_stack *a);
+void	rb(int bench, t_stack *b);
+void	rr(int bench, t_stack *a, t_stack *b);
+
+// reverse rotate operations — operations_rr.c
+void	rra(int bench, t_stack *a);
+void	rrb(int bench, t_stack *b);
+void	rrr(int bench, t_stack *a, t_stack *b);
 
 //adaptive algorithm — dispatcher.c
 void	dispatcher(t_stack *a, t_stack *b, t_flags f);
 float	disorder(t_stack *h);
 
 //sorting — sort.c
-void	bubble_sort(t_stack *a, t_stack *b);
-void	chunk_sort(t_stack *a, t_stack *b); // to do
-void	radix_sort(t_stack *a, t_stack *b); // to do
+void	bubble_sort(int bench, t_stack *a, t_stack *b);
+void	chunk_sort(int bench, t_stack *a, t_stack *b); // to do
+void	radix_sort(int bench, t_stack *a, t_stack *b); // to do
 
 //sorting — sort_special.c
-void	special_sort(t_stack *a, t_stack *b); //to do
+void	special_sort(int bench, t_stack *a, t_stack *b); //to do
 void	sort_2(t_stack *a, t_stack *b); //to do
 void	sort_3(t_stack *a, t_stack *b); //to do
 void	sort_inverted(t_stack *a, t_stack *b); //to do 
-
-//printing - printers.c
-void	print_stack(t_stack *stack);
-//void	print_ranks(t_stack *stack);
-//void	print_operations(t_list operations *ops); // to think
-//void	print_bench(t_stack *a, t_stack *b, t_list operations *ops); // to think
 
 #endif

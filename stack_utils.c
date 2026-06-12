@@ -6,7 +6,7 @@
 /*   By: gsantoni <gsantoni@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/11 13:56:51 by anade-mo          #+#    #+#             */
-/*   Updated: 2026/06/12 17:30:09 by gsantoni         ###   ########.fr       */
+/*   Updated: 2026/06/12 18:43:27 by gsantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,43 @@ t_node	*pop(t_stack *stack)
 	temp->next = NULL;
 	if (stack->bottom == temp)
 		stack->bottom = NULL;
+	stack->size -= 1;
+	return (temp);
+}
+
+void	push_bottom(t_stack *stack, t_node *new)
+{
+	if (!stack || !new)
+		return ;
+	if (!stack->size)
+	{
+		stack->top = new;
+		stack->bottom = new;
+	}
+	else
+	{
+		stack->bottom->next = new;
+		stack->bottom = new;
+	}
+	stack->size += 1;
+}
+
+// still uses a while, has to find the prev to bottom on every move
+t_node	*pop_bottom(t_stack *stack)
+{
+	t_node	*temp;
+	t_node	*new_bottom;
+
+	if (!stack || !stack->size)
+		return (NULL);
+	if (stack->size == 1)
+		return (pop(stack));
+	new_bottom = stack->top;
+	while (new_bottom->next != stack->bottom)
+		new_bottom = new_bottom->next;
+	temp = stack->bottom;
+	new_bottom->next = NULL;
+	stack->bottom = new_bottom;
 	stack->size -= 1;
 	return (temp);
 }

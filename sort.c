@@ -6,13 +6,13 @@
 /*   By: gsantoni <gsantoni@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/12 15:59:56 by gsantoni          #+#    #+#             */
-/*   Updated: 2026/06/12 16:00:57 by gsantoni         ###   ########.fr       */
+/*   Updated: 2026/06/12 18:38:11 by gsantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	bubble_sort(t_stack *a, t_stack *b)
+void	bubble_sort(int bench, t_stack *a, t_stack *b)
 {
 	int		i;
 	int		n;
@@ -24,23 +24,23 @@ void	bubble_sort(t_stack *a, t_stack *b)
 		while (i < n)
 		{
 			if (a->top->value < a->top->next->value)
-				sa(a);
-			ra(a);
+				sa(bench, a);
+			ra(bench, a);
 			i++;
 		}
-		pb(a, b);
+		pb(bench, a, b);
 	}
 	while (b->size > 0)
-		pa(a, b);
+		pa(bench, a, b);
 }
 
-void	chunk_sort(t_stack *a, t_stack *b)
+void	chunk_sort(int bench, t_stack *a, t_stack *b)
 {
 	(void)a;
 	(void)b;
 }
 
-void	radix_sort(t_stack *a, t_stack *b)
+void	radix_sort(int bench, t_stack *a, t_stack *b)
 {
 	(void)a;
 	(void)b;
