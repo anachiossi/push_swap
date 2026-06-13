@@ -6,7 +6,7 @@
 /*   By: gsantoni <gsantoni@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/11 14:00:15 by anade-mo          #+#    #+#             */
-/*   Updated: 2026/06/13 10:13:24 by gsantoni         ###   ########.fr       */
+/*   Updated: 2026/06/13 16:11:13 by anade-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 int	is_valid(char *s)
 {
-	int		i;
-	int		sign;
-	int		len;
+	int	i;
+	int	sign;
+	int	len;
 
 	if (!s || !*s)
 		return (0);
@@ -69,7 +69,7 @@ int	input_to_stack(char **arg, t_stack *a)
 
 int	assign_flags(t_flags *f, char **argv, int argc)
 {
-	int		i;
+	int	i;
 
 	f->level = 0;
 	f->bench = 0;
@@ -98,8 +98,8 @@ void	benchmode(float d, int *n)
 	ft_printf("[bench] disorder: %.2f%%\n", d * 100);
 	ft_printf("[bench] strategy: %s\n", "...");
 	ft_printf("[bench] total ops: %d\n", n[11]);
-	ft_printf("[bench] sa: %d\t sb: %d\t ss: %d\t pa: %d\t pb: %d\n", n[0], n[1],
-		n[2], n[3], n[4]);
-	ft_printf("[bench] ra: %d\t rb: %d\t rr: %d\t rra: %d\t rrb: %d\t rrr: %d\n",
-		n[5], n[6], n[7], n[8], n[9], n[10]);
+	ft_printf("[bench] sa: %d\t sb: %d\t ss: %d\t pa: %d\t pb: %d\n", n[0],
+		n[1], n[2], n[3], n[4]);
+	ft_printf("[bench] ra: %d\t rb: %d\t rr: %d\t rra: %d\t rrb: %d\t rrr:
+		%d\n", n[5], n[6], n[7], n[8], n[9], n[10]);
 }

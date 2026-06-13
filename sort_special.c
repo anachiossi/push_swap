@@ -6,7 +6,7 @@
 /*   By: gsantoni <gsantoni@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/11 19:48:54 by anade-mo          #+#    #+#             */
-/*   Updated: 2026/06/12 18:45:28 by gsantoni         ###   ########.fr       */
+/*   Updated: 2026/06/13 16:12:20 by anade-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,4 +73,3 @@ void	sort_3(int bench, t_stack *a)
 	else
 		rra(bench, a);
 }
-

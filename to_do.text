@@ -1,28 +1,6 @@
-PARSER:
 
-OK 1 - parser input control need a FIX after FLAG implementation
-	 -> currently does not consider FLAGS, works for numbers only.
-OK 2 - FLAG parser
-	-> reads argv[1] and [2]
-	-> max of flags per call = 2.
-	-> adaptive == no flag.
-		example:
-		--simple    forza O(n²)
-		--medium    forza O(n√n)
-		--complex   forza O(n log n)
-		--adaptive  forza adattivo (è il DEFAULT se non metti nessun flag)
-	-> flag struct:
-		typedef struct s_flags
-			int 	level; 0 = normal adaptive, 1 simple, 2 medium, 3 complex.
-    		int     bench; boolean
 				
 SORTING:
-
-1 - CREATE hardcode special cases disorder == 0;
-2 - CREATE hardcode special cases disorder == 1;
-3 - CREATE hardcode special cases size == 1;
-4 - CREATE hardcode special cases size == 2;
-5 - CREATE hardcode special cases size == 3;
 
 6 - CREATE MEDIUM chunk sort O(n√n) or other 
 7 - CREATE COMPLEX radix LSD O(n log n) OR quicksort with optimum pivot
@@ -36,25 +14,6 @@ AFTER SORTING OPTIMIZATION:
 	if it finds ra & rb substitute for rr.
 	if it finds rra & rrb susbtitute for rrr.
 	if it finds sa & sb substitute for ss.
-3 - CREATE bench helper tools to COUNT how many operations of each were made: 
-	[bench] total_ops: 7997
-	[bench] sa: 0  sb: 0  ss: 0  pa: 500  pb: 500
-	[bench] ra: 4840  rb: 1098  rr: 0  rra: 0  rrb: 1059  rrr: 0
-
-
-OUTPUT CONTROL:
-
-1 - CREATE output option FLAG --bench
-
-		example:
-	[bench] disorder: 49.93%
-	[bench] strategy: Adaptive / O(n√n)
-	[bench] total_ops: 7997
-	[bench] sa: 0  sb: 0  ss: 0  pa: 500  pb: 500
-	[bench] ra: 4840  rb: 1098  rr: 0  rra: 0  rrb: 1059  rrr: 0
-
-
-2 - CLEAN normal output (we are using it as tests). if no flag --bench. 
 
 TOOLS:
 

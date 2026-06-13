@@ -6,14 +6,14 @@
 /*   By: gsantoni <gsantoni@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 18:32:09 by gsantoni          #+#    #+#             */
-/*   Updated: 2026/06/13 10:10:44 by gsantoni         ###   ########.fr       */
+/*   Updated: 2026/06/13 16:12:03 by anade-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <stdlib.h>
 
-//order sa[0] sb[1] ss[2] pa[3] pb[4] ra[5] rb[6] rr[7] rra[8] rrb[9] rrr[10]. total [11]
+// order sa sb ss pa pb ra rb rr rra rrb rrr. total
 int	*op_count(int k)
 {
 	static int	n[12];
