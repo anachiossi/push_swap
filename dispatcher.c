@@ -6,7 +6,7 @@
 /*   By: gsantoni <gsantoni@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/11 00:00:00 by anade-mo          #+#    #+#             */
-/*   Updated: 2026/06/12 18:38:58 by gsantoni         ###   ########.fr       */
+/*   Updated: 2026/06/13 10:18:51 by gsantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 float	disorder(t_stack *x)
 {
-	int	m;
-	int	p;
-	t_node	*a;
-	t_node	*b;
+	int			m;
+	int			p;
+	t_node		*a;
+	t_node		*b;
 
 	if (!x || x->size < 2)
 		return ((float)0);
@@ -42,14 +42,14 @@ void	dispatcher(t_stack *a, t_stack *b, t_flags f)
 {
 	float	d;
 
-	d = disorder(a);	
-	if (d == 0 || d == 1 || a->size <= 3 )
+	d = disorder(a);
+	if (d == 0 || d == 1 || a->size <= 3)
 		special_sort(f.bench, a, b);
 	else if (d <= 0.2 || f.level == 1)
 		bubble_sort(f.bench, a, b);
 	else if (d <= 0.5 || f.level == 2)
 		chunk_sort(f.bench, a, b);
 	else if (d < 1 || f.level == 3)
-		radix_sort(f.bench, a, b); 
-	//	quick_sort(a, b); //
+		radix_sort(f.bench, a, b);
 }
+//quick_sort(a, b);

@@ -6,14 +6,14 @@
 /*   By: gsantoni <gsantoni@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/11 14:00:15 by anade-mo          #+#    #+#             */
-/*   Updated: 2026/06/13 09:56:22 by gsantoni         ###   ########.fr       */
+/*   Updated: 2026/06/13 10:13:24 by gsantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include "push_swap.h"
 
-int		is_valid(char *s)
+int	is_valid(char *s)
 {
 	int		i;
 	int		sign;
@@ -40,7 +40,7 @@ int		is_valid(char *s)
 	return (1);
 }
 
-int		input_to_stack(char **arg, t_stack *a)
+int	input_to_stack(char **arg, t_stack *a)
 {
 	t_node	*temp;
 	t_node	*n;
@@ -68,12 +68,12 @@ int		input_to_stack(char **arg, t_stack *a)
 	return (1);
 }
 
-int		assign_flags(t_flags *f, char **argv, int argc)
+int	assign_flags(t_flags *f, char **argv, int argc)
 {
 	int		i;
+
 	f->level = 0;
 	f->bench = 0;
-
 	i = 1;
 	while (i < argc && argv[i][0] == '-' && argv[i][1] == '-')
 	{
@@ -99,6 +99,8 @@ void	benchmode(float d, int *n)
 	printf("[bench] disorder: %.2f%%\n", d);
 	printf("[bench] strategy: %s\n", "...");
 	printf("[bench] total ops: %d\n", n[11] - 1);
-	printf("[bench] sa: %d\t sb: %d\t ss: %d\t pa: %d\t pb: %d\n", n[0], n[1], n[2], n[3], n[4]);
-	printf("[bench] ra: %d\t rb: %d\t rr: %d\t rra: %d\t rrb: %d\t rrr: %d\n", n[5], n[6], n[7], n[8], n[9], n[10]);
+	printf("[bench] sa: %d\t sb: %d\t ss: %d\t pa: %d\t pb: %d\n", n[0], n[1],
+		n[2], n[3], n[4]);
+	printf("[bench] ra: %d\t rb: %d\t rr: %d\t rra: %d\t rrb: %d\t rrr: %d\n",
+		n[5], n[6], n[7], n[8], n[9], n[10]);
 }

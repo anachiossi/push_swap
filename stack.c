@@ -6,14 +6,14 @@
 /*   By: gsantoni <gsantoni@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 19:42:37 by gsantoni          #+#    #+#             */
-/*   Updated: 2026/06/12 18:50:06 by gsantoni         ###   ########.fr       */
+/*   Updated: 2026/06/13 10:14:24 by gsantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <stdio.h>
 
-t_node		*new_node(int value)
+t_node	*new_node(int value)
 {
 	t_node	*node;
 
@@ -25,7 +25,7 @@ t_node		*new_node(int value)
 	return (node);
 }
 
-t_stack		*new_stack(void)
+t_stack	*new_stack(void)
 {
 	t_stack	*stack;
 
