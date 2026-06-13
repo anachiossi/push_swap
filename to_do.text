@@ -20,8 +20,3 @@ TOOLS:
 1 - CREATE separate tool for generating comand lines with 500 valid numbers as inputs
 2 - CREATE A operation O mesure: calculates Big O from input size and operation numbers. can use benchmark as input (would be nice)
  
-NORM:
-
-1 - FIX personal ft_printf to allow it to print float. (or do some math before the output *100)
-2 - FIX - CHANGE stdio printf calls to 42 ft_printf
-3 - FIX - include ft_printf lib in the h. and MAKEFILE.
