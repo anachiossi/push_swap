@@ -2,37 +2,32 @@ NAME	= push_swap
 CC		= cc
 CFLAGS	= -Wall -Wextra -Werror
 
-LIBFT_DIR	= libft
-LIBFT		= $(LIBFT_DIR)/libft.a
+LIBFT		= libft.a
+LIBPRINTF	= libftprintf.a
 
-SRCS	= main.c parse.c stack.c stack_utils.c operations.c \
-		  print_count.c rotate.c dispatcher.c disorder.c \
-		  sort_simple.c sort_special.c sort_medium.c sort_complex.c
+SRCS	= main.c parse.c stack.c stack_utils.c \
+		  operations_base.c operations_ps.c operations_r.c operations_rr.c \
+		  dispatcher.c sort.c sort_special.c
 
 OBJ_DIR	= obj
 OBJS	= $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
 
-all: $(LIBFT) $(OBJ_DIR) $(NAME)
-
-$(LIBFT):
-	make -C $(LIBFT_DIR)
+all: $(OBJ_DIR) $(NAME)
 
 $(OBJ_DIR):
 	mkdir -p $(OBJ_DIR)
 
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) -L$(LIBFT_DIR) -lft -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(LIBPRINTF) -o $(NAME)
 
 $(OBJ_DIR)/%.o: %.c
-	$(CC) $(CFLAGS) -I$(LIBFT_DIR) -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 	rm -rf $(OBJ_DIR)
-	make -C $(LIBFT_DIR) clean
 
 fclean: clean
 	rm -f $(NAME)
-	make -C $(LIBFT_DIR) fclean
 
 re: fclean all
 

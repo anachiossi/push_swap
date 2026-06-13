@@ -35,7 +35,7 @@ float	disorder(t_stack *x)
 		}
 		a = a->next;
 	}
-	return (((float)m / (float)p) * (float)100);
+	return ((float)m / (float)p);
 }
 
 void	dispatcher(t_stack *a, t_stack *b, t_flags f)
@@ -43,8 +43,8 @@ void	dispatcher(t_stack *a, t_stack *b, t_flags f)
 	float	d;
 
 	d = disorder(a);
-	if (d == 0 || d == 1 || a->size <= 3)
-		special_sort(f.bench, a, b);
+	if (d == 0 || a->size <= 3)
+		special_sort(f.bench, a, b, d);
 	else if (d <= 0.2 || f.level == 1)
 		bubble_sort(f.bench, a, b);
 	else if (d <= 0.5 || f.level == 2)

@@ -34,5 +34,5 @@ void	rr(int bench, t_stack *a, t_stack *b)
 	r(b);
 	op_count(7);
 	if (!bench)
-		write(1, "rb\n", 3);
+		write(1, "rr\n", 3);
 }

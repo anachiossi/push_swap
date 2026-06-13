@@ -13,13 +13,16 @@
 #include "push_swap.h"
 #include <stdlib.h>
 
-//order sa sb ss pa pb ra rb rr rra rrb rrr. total 11
+//order sa[0] sb[1] ss[2] pa[3] pb[4] ra[5] rb[6] rr[7] rra[8] rrb[9] rrr[10]. total [11]
 int	*op_count(int k)
 {
 	static int	n[12];
 
-	n[k] += 1;
-	n[11] += 1;
+	if (k >= 0)
+	{
+		n[k] += 1;
+		n[11] += 1;
+	}
 	return (n);
 }
 

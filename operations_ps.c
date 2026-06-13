@@ -25,7 +25,7 @@ void	sb(int bench, t_stack *b)
 	s(b);
 	op_count(1);
 	if (!bench)
-		write(1, "sa\n", 3);
+		write(1, "sb\n", 3);
 }
 
 void	ss(int bench, t_stack *a, t_stack *b)
@@ -34,7 +34,7 @@ void	ss(int bench, t_stack *a, t_stack *b)
 	s(b);
 	op_count(2);
 	if (!bench)
-		write(1, "sa\n", 3);
+		write(1, "ss\n", 3);
 }
 
 void	pa(int bench, t_stack *a, t_stack *b)

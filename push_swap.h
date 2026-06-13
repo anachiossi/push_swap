@@ -17,6 +17,8 @@
 # include <unistd.h>
 # include <stdlib.h>
 
+int	ft_printf(const char *format, ...);
+
 typedef struct s_node
 {
 	int				value;
@@ -90,9 +92,9 @@ void	chunk_sort(int bench, t_stack *a, t_stack *b); // to do
 void	radix_sort(int bench, t_stack *a, t_stack *b); // to do
 
 //sorting — sort_special.c
-void	special_sort(int bench, t_stack *a, t_stack *b); //to do
-void	sort_2(t_stack *a, t_stack *b); //to do
-void	sort_3(t_stack *a, t_stack *b); //to do
-void	sort_inverted(t_stack *a, t_stack *b); //to do 
+void	special_sort(int bench, t_stack *a, t_stack *b, float d); //to do
+void	sort_2(int bench, t_stack *a); //to do
+void	sort_3(int bench, t_stack *a); //to do
+ //to do 
 
 #endif

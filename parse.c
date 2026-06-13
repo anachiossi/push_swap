@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include "push_swap.h"
 
 int	is_valid(char *s)
@@ -55,7 +54,7 @@ int	input_to_stack(char **arg, t_stack *a)
 			return (0);
 		}
 		n = new_node(ft_atoi(*arg++));
-		push(a, n);
+		push_bottom(a, n);
 		temp = a->top;
 		while (a->bottom && a->bottom->value != temp->value)
 			temp = temp->next;
@@ -96,11 +95,11 @@ int	assign_flags(t_flags *f, char **argv, int argc)
 
 void	benchmode(float d, int *n)
 {
-	printf("[bench] disorder: %.2f%%\n", d);
-	printf("[bench] strategy: %s\n", "...");
-	printf("[bench] total ops: %d\n", n[11] - 1);
-	printf("[bench] sa: %d\t sb: %d\t ss: %d\t pa: %d\t pb: %d\n", n[0], n[1],
+	ft_printf("[bench] disorder: %.2f%%\n", d * 100);
+	ft_printf("[bench] strategy: %s\n", "...");
+	ft_printf("[bench] total ops: %d\n", n[11]);
+	ft_printf("[bench] sa: %d\t sb: %d\t ss: %d\t pa: %d\t pb: %d\n", n[0], n[1],
 		n[2], n[3], n[4]);
-	printf("[bench] ra: %d\t rb: %d\t rr: %d\t rra: %d\t rrb: %d\t rrr: %d\n",
+	ft_printf("[bench] ra: %d\t rb: %d\t rr: %d\t rra: %d\t rrb: %d\t rrr: %d\n",
 		n[5], n[6], n[7], n[8], n[9], n[10]);
 }

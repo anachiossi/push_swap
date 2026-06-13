@@ -10,6 +10,24 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+/*
+  SWAP (swap n1 and n2 of x)
+  sa  → swap top 2 elements of a
+  sb  → swap top 2 elements of b
+
+  PUSH  (top x -> top x)
+  pa  → take top of b, push to top of a
+  pb  → take top of a, push to top of b
+
+  ROTATE  (top x → bottom x)
+  ra  → top of a goes to bottom of a
+  rb  → top of b goes to bottom of b
+
+  REVERSE ROTATE  (bottom x → top x)
+  rra → bottom of a goes to top of a
+  rrb → bottom of b goes to top of b
+*/
+
 #include "push_swap.h"
 
 void	bubble_sort(int bench, t_stack *a, t_stack *b)
@@ -36,12 +54,14 @@ void	bubble_sort(int bench, t_stack *a, t_stack *b)
 
 void	chunk_sort(int bench, t_stack *a, t_stack *b)
 {
+	(void)bench;
 	(void)a;
 	(void)b;
 }
 
 void	radix_sort(int bench, t_stack *a, t_stack *b)
 {
+	(void)bench;
 	(void)a;
 	(void)b;
 }
