@@ -6,7 +6,7 @@
 /*   By: gsantoni <gsantoni@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 18:29:22 by gsantoni          #+#    #+#             */
-/*   Updated: 2026/06/12 18:50:41 by gsantoni         ###   ########.fr       */
+/*   Updated: 2026/06/13 09:56:47 by gsantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ typedef struct s_flags
 int		is_valid(char *s);
 int		input_to_stack(char **arg, t_stack *a);
 int		assign_flags(t_flags *f, char **argv, int argc);
-void	benchmode(int d, int *n);
+void		benchmode(float d, int *n);
 
 // stack creation — stack.c
 t_node		*new_node(int value);

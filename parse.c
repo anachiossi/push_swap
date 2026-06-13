@@ -6,7 +6,7 @@
 /*   By: gsantoni <gsantoni@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/11 14:00:15 by anade-mo          #+#    #+#             */
-/*   Updated: 2026/06/12 18:56:18 by gsantoni         ###   ########.fr       */
+/*   Updated: 2026/06/13 09:56:22 by gsantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,9 +94,9 @@ int		assign_flags(t_flags *f, char **argv, int argc)
 	return (i);
 }
 
-void	benchmode(int d, int *n)
+void	benchmode(float d, int *n)
 {
-	printf("[bench] disorder: %d%%\n", d);
+	printf("[bench] disorder: %.2f%%\n", d);
 	printf("[bench] strategy: %s\n", "...");
 	printf("[bench] total ops: %d\n", n[11] - 1);
 	printf("[bench] sa: %d\t sb: %d\t ss: %d\t pa: %d\t pb: %d\n", n[0], n[1], n[2], n[3], n[4]);

@@ -6,7 +6,7 @@
 /*   By: gsantoni <gsantoni@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 18:45:55 by gsantoni          #+#    #+#             */
-/*   Updated: 2026/06/12 18:55:48 by gsantoni         ###   ########.fr       */
+/*   Updated: 2026/06/13 10:05:44 by gsantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,22 @@ int	main(int argc, char **argv)
 	t_stack	*a;
 	t_stack	*b;
 	t_flags	f;
-	int		d;
+	float		d;
 
 	if (argc < 2)
 		return (0);
 	a = new_stack();
 	if (!input_to_stack(&argv[assign_flags(&f, argv, argc)], a))
+	{
 		write(1, "Error\n", 6);
+		return (0);
+	}
 	b = new_stack();
 	if (!b)
+	{
 		write(1, "Error\n", 6);
+		return (0);
+	}
 
 	/*float d = disorder(a);
 	printf("before: ");
