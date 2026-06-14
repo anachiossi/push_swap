@@ -6,11 +6,12 @@
 /*   By: gsantoni <gsantoni@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/11 14:00:15 by anade-mo          #+#    #+#             */
-/*   Updated: 2026/06/14 00:01:55 by gsantoni         ###   ########.fr       */
+/*   Updated: 2026/06/14 11:22:57 by gsantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include "ft_printf.h"
 
 int	is_valid(char *s)
 {
@@ -67,29 +68,31 @@ int	input_to_stack(char **arg, t_stack *a)
 	return (1);
 }
 
-int	assign_flags(t_flags *f, char **argv, int argc)
+int	assign_flags(t_ps_flags *f, char **argv, int argc)
 {
 	int	i;
 
-	f->level = 0;
+	f->level = -1;
 	f->bench = 0;
 	i = 1;
-	while (i < argc && argv[i][0] == '-' && argv[i][1] == '-')
+	while (i < argc && !is_valid(argv[i]))
 	{
-		if (!ft_strncmp(argv[i], "--adaptive", 11))
-			f->level = 0;
-		else if (!ft_strncmp(argv[i], "--simple", 9))
-			f->level = 1;
-		else if (!ft_strncmp(argv[i], "--medium", 9))
-			f->level = 2;
-		else if (!ft_strncmp(argv[i], "--complex", 10))
-			f->level = 3;
-		else if (!ft_strncmp(argv[i], "--bench", 8))
+		if (!ft_strncmp(argv[i], "--bench", 8))
 			f->bench = 1;
+		else if (!ft_strncmp(argv[i], "--adaptive", 11) && f->level == -1)
+			f->level = 0;
+		else if (!ft_strncmp(argv[i], "--simple", 9) && f->level == -1)
+			f->level = 1;
+		else if (!ft_strncmp(argv[i], "--medium", 9) && f->level == -1)
+			f->level = 2;
+		else if (!ft_strncmp(argv[i], "--complex", 10) && f->level == -1)
+			f->level = 3;
 		else
 			return (-1);
 		i++;
 	}
+	if (f->level == -1)
+		f->level = 0;
 	return (i);
 }
 

@@ -6,7 +6,7 @@
 /*   By: gsantoni <gsantoni@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 18:45:55 by gsantoni          #+#    #+#             */
-/*   Updated: 2026/06/13 10:19:10 by gsantoni         ###   ########.fr       */
+/*   Updated: 2026/06/14 11:21:40 by gsantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	main(int argc, char **argv)
 {
 	t_stack	*a;
 	t_stack	*b;
-	t_flags	f;
+	t_ps_flags	f;
 	float	d;
 	int		i;
 

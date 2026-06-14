@@ -6,7 +6,7 @@
 /*   By: gsantoni <gsantoni@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/11 00:00:00 by anade-mo          #+#    #+#             */
-/*   Updated: 2026/06/13 10:18:51 by gsantoni         ###   ########.fr       */
+/*   Updated: 2026/06/14 11:21:22 by gsantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ float	disorder(t_stack *x)
 	return ((float)m / (float)p);
 }
 
-void	dispatcher(t_stack *a, t_stack *b, t_flags f)
+void	dispatcher(t_stack *a, t_stack *b, t_ps_flags f)
 {
 	float	d;
 

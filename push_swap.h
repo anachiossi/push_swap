@@ -6,7 +6,7 @@
 /*   By: gsantoni <gsantoni@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 18:29:22 by gsantoni          #+#    #+#             */
-/*   Updated: 2026/06/13 16:15:13 by anade-mo         ###   ########.fr       */
+/*   Updated: 2026/06/14 11:22:44 by gsantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,16 +34,16 @@ typedef struct s_stack
 
 // level if 0 == adaptive, 1 == simple, 2 == medium, 3 == complex
 // bench is boolean 1 if --bench is set, 0 otherwise
-typedef struct s_flags
+typedef struct s_ps_flags
 {
 	int				level;
 	int				bench;
-}					t_flags;
+}					t_ps_flags;
 
 // parsing — parse.c (ft_atoi from libft)
 int					is_valid(char *s);
 int					input_to_stack(char **arg, t_stack *a);
-int					assign_flags(t_flags *f, char **argv, int argc);
+int					assign_flags(t_ps_flags *f, char **argv, int argc);
 void				benchmode(float d, int *n);
 
 // stack creation — stack.c
@@ -83,7 +83,7 @@ void				rrb(int bench, t_stack *b);
 void				rrr(int bench, t_stack *a, t_stack *b);
 
 // adaptive algorithm — dispatcher.c
-void				dispatcher(t_stack *a, t_stack *b, t_flags f);
+void				dispatcher(t_stack *a, t_stack *b, t_ps_flags f);
 float				disorder(t_stack *h);
 
 // sorting — sort.c
