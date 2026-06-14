@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_special.c                                     :+:      :+:    :+:   */
+/*   sort_simple.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gsantoni <gsantoni@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/11 19:48:54 by anade-mo          #+#    #+#             */
-/*   Updated: 2026/06/13 16:12:20 by anade-mo         ###   ########.fr       */
+/*   Updated: 2026/06/14 13:47:57 by anade-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	find_min(t_stack *x)
 			min = current->value;
 		current = current->next;
 	}
-	return (min);	
+	return (min);
 }
 
 void	sort_2(int bench, t_stack *a)
@@ -78,11 +78,12 @@ void	sort_3(int bench, t_stack *a)
 	else
 		rra(bench, a);
 }
+
 void	simple_sort(int bench, t_stack *a, t_stack *b)
 {
-	int	min;
+	int		min;
 	float	d;
-	
+
 	d = disorder(a);
 	if (d == 0 || a->size == 1)
 		return ;
