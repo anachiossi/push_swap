@@ -6,13 +6,13 @@
 /*   By: anade-mo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/13 21:18:17 by anade-mo          #+#    #+#             */
-/*   Updated: 2026/06/14 18:06:00 by anade-mo         ###   ########.fr       */
+/*   Updated: 2026/06/14 22:59:21 by anade-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ps_gen.h"
 
-void	print_flags(t_gen *g)
+static void	print_flags(t_gen *g)
 {
 	if (g->level == 0)
 		ft_printf("--adaptive ");
@@ -26,7 +26,7 @@ void	print_flags(t_gen *g)
 		ft_printf("--bench ");
 }
 
-void	print_array(int *arr, int size)
+static void	print_array(int *arr, int size)
 {
 	int	i;
 

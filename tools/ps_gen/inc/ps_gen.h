@@ -33,7 +33,10 @@ typedef struct s_gen
 }			t_gen;
 
 /* gen_target.c */
-int			init_targets(t_gen *g);
+int			get_size(t_gen *g);
+int			get_disorder(t_gen *g);
+int			get_algorithm(t_gen *g);
+int			get_bench(t_gen *g);
 int			gen_rank(t_gen *g);
 
 /* gen_agents.c */

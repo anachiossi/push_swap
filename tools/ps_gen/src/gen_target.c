@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   gen_ps_input.c                                     :+:      :+:    :+:   */
+/*   gen_target.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anade-mo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/14 18:05:40 by anade-mo          #+#    #+#             */
-/*   Updated: 2026/06/14 18:05:45 by anade-mo         ###   ########.fr       */
+/*   Updated: 2026/06/14 22:59:12 by anade-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,19 +98,6 @@ int	get_bench(t_gen *g)
 	return (1);
 }
 
-int	init_targets(t_gen *g)
-{
-	if (!get_size(g))
-		return (0);
-	if (!get_disorder(g))
-		return (0);
-	if (!get_algorithm(g))
-		return (0);
-	if (!get_bench(g))
-		return (0);
-	return (1);
-}
-
 int	gen_rank(t_gen *g)
 {
 	g->rank = malloc(g->size * sizeof(int));
@@ -127,6 +114,3 @@ int	gen_rank(t_gen *g)
 		make_order(g);
 	return (1);
 }
-
-
-

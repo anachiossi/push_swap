@@ -6,11 +6,24 @@
 /*   By: anade-mo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/14 18:58:42 by anade-mo          #+#    #+#             */
-/*   Updated: 2026/06/14 18:58:52 by anade-mo         ###   ########.fr       */
+/*   Updated: 2026/06/14 22:59:36 by anade-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ps_gen.h"
+
+static int	init_targets(t_gen *g)
+{
+	if (!get_size(g))
+		return (0);
+	if (!get_disorder(g))
+		return (0);
+	if (!get_algorithm(g))
+		return (0);
+	if (!get_bench(g))
+		return (0);
+	return (1);
+}
 
 int	main(void)
 {

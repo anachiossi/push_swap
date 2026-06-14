@@ -6,7 +6,7 @@
 /*   By: anade-mo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/14 18:04:22 by anade-mo          #+#    #+#             */
-/*   Updated: 2026/06/14 18:04:24 by anade-mo         ###   ########.fr       */
+/*   Updated: 2026/06/14 22:59:03 by anade-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 float	calc_disorder(t_gen *g)
 {
-	int		i;
-	int		j;
-	int		wrong;
-	int		pairs;
+	int	i;
+	int	j;
+	int	wrong;
+	int	pairs;
 
 	if (!g || g->size < 2)
 		return (0.0f);
@@ -38,7 +38,7 @@ float	calc_disorder(t_gen *g)
 	return (g->dis_now);
 }
 
-void	sort(int *arr, int size)
+static void	sort(int *arr, int size)
 {
 	int	i;
 	int	j;
@@ -59,7 +59,7 @@ void	sort(int *arr, int size)
 	}
 }
 
-void	fill_random(int *arr, int size)
+static void	fill_random(int *arr, int size)
 {
 	int	i;
 
@@ -71,7 +71,7 @@ void	fill_random(int *arr, int size)
 	}
 }
 
-void	put_value(t_gen *g, int *temp)
+static void	put_value(t_gen *g, int *temp)
 {
 	int	i;
 
