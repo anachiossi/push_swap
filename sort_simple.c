@@ -30,15 +30,20 @@
 
 #include "push_swap.h"
 
-void	special_sort(int bench, t_stack *a, t_stack *b, float d)
+int	find_min(t_stack *x)
 {
-	(void)b;
-	if (d == 0)
-		return ;
-	else if (a->size == 2)
-		sort_2(bench, a);
-	else if (a->size == 3)
-		sort_3(bench, a);
+	int		min;
+	t_node	*current;
+
+	min = x->top->value;
+	current = x->top->next;
+	while (current)
+	{
+		if (current->value < min)
+			min = current->value;
+		current = current->next;
+	}
+	return (min);	
 }
 
 void	sort_2(int bench, t_stack *a)
@@ -72,4 +77,26 @@ void	sort_3(int bench, t_stack *a)
 		sa(bench, a);
 	else
 		rra(bench, a);
+}
+void	simple_sort(int bench, t_stack *a, t_stack *b)
+{
+	int	min;
+	float	d;
+	
+	d = disorder(a);
+	if (d == 0 || a->size == 1)
+		return ;
+	if (a->size == 2)
+		sort_2(bench, a);
+	else if (a->size == 3)
+		sort_3(bench, a);
+	else
+	{
+		min = find_min(a);
+		while (a->top->value != min)
+			ra(bench, a);
+		pb(bench, a, b);
+		simple_sort(bench, a, b);
+		pa(bench, a, b);
+	}
 }

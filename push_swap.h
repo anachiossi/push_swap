@@ -87,12 +87,13 @@ void				dispatcher(t_stack *a, t_stack *b, t_ps_flags f);
 float				disorder(t_stack *h);
 
 // sorting — sort.c
-void				bubble_sort(int bench, t_stack *a, t_stack *b);
+void				bubble_sort(int bench, t_stack *a);
 void				chunk_sort(int bench, t_stack *a, t_stack *b); // to do
 void				radix_sort(int bench, t_stack *a, t_stack *b); // to do
 
-// sorting — sort_special.c
-void				special_sort(int bench, t_stack *a, t_stack *b, float d);
+// sorting — simple_sort.c
+void				simple_sort(int bench, t_stack *a, t_stack *b);
+int					find_min(t_stack *x);
 void				sort_2(int bench, t_stack *a);
 void				sort_3(int bench, t_stack *a);
 
