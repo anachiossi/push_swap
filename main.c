@@ -30,7 +30,7 @@ int	main(int argc, char **argv)
 	d = disorder(a);
 	dispatcher(a, b, f);
 	if (f.bench)
-		benchmode(d, op_count(-1));
+		benchmode(d, op_count(-1), f.level);
 	free_stack(a);
 	free_stack(b);
 	return (0);

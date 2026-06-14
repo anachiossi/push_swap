@@ -44,7 +44,7 @@ typedef struct s_ps_flags
 int					is_valid(char *s);
 int					input_to_stack(char **arg, t_stack *a);
 int					assign_flags(t_ps_flags *f, char **argv, int argc);
-void				benchmode(float d, int *n);
+void				benchmode(float d, int *n, int level);
 
 // stack creation — stack.c
 t_node				*new_node(int value);

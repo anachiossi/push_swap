@@ -96,10 +96,16 @@ int	assign_flags(t_ps_flags *f, char **argv, int argc)
 	return (i);
 }
 
-void	benchmode(float d, int *n)
+void	benchmode(float d, int *n, int level)
 {
+	char	*s[4];
+
+	s[0] = "adaptive";
+	s[1] = "simple";
+	s[2] = "chunk";
+	s[3] = "radix";
 	ft_printf("[bench] disorder: %.2f%%\n", d * 100);
-	ft_printf("[bench] strategy: %s\n", "...");
+	ft_printf("[bench] strategy: %s\n", s[level]);
 	ft_printf("[bench] total ops: %d\n", n[11]);
 	ft_printf("[bench] sa: %d\tsb: %d\tss: %d\tpa: %d\tpb: %d\n", n[0],
 		n[1], n[2], n[3], n[4]);
