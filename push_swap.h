@@ -92,9 +92,9 @@ void				radix_sort(int bench, t_stack *a, t_stack *b); // to do
 
 // sorting — simple_sort.c
 void				small_sort(int bench, t_stack *a, t_stack *b);
+void				min_top(int bench, t_stack *a);
 int					find_min(t_stack *x);
 void				sort_2(int bench, t_stack *a);
 void				sort_3(int bench, t_stack *a);
-void				bubble_sort(int bench, t_stack *a);
 
 #endif

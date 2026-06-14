@@ -61,6 +61,8 @@ void	sort_3(int bench, t_stack *a)
 	top = a->top->value;
 	mid = a->top->next->value;
 	bot = a->bottom->value;
+	if (top < mid && mid < bot)
+		return ;
 	if (top > mid && top > bot && mid < bot)
 		ra(bench, a);
 	else if (top > mid && top > bot && mid > bot)
@@ -79,9 +81,30 @@ void	sort_3(int bench, t_stack *a)
 		rra(bench, a);
 }
 
-void	simple_sort(int bench, t_stack *a, t_stack *b)
+void	min_top(int bench, t_stack *a)
 {
 	int		min;
+	int		pos;
+	t_node	*cur;
+
+	min = find_min(a);
+	pos = 0;
+	cur = a->top;
+	while (cur->value != min)
+	{
+		pos++;
+		cur = cur->next;
+	}
+	if (pos <= a->size / 2)
+		while (a->top->value != min)
+			ra(bench, a);
+	else
+		while (a->top->value != min)
+			rra(bench, a);
+}
+
+void	small_sort(int bench, t_stack *a, t_stack *b)
+{
 	float	d;
 
 	d = disorder(a);
@@ -93,33 +116,9 @@ void	simple_sort(int bench, t_stack *a, t_stack *b)
 		sort_3(bench, a);
 	else
 	{
-		min = find_min(a);
-		while (a->top->value != min)
-			ra(bench, a);
+		min_top(bench, a);
 		pb(bench, a, b);
-		simple_sort(bench, a, b);
+		small_sort(bench, a, b);
 		pa(bench, a, b);
 	}
-}
-
-void	bubble_sort(int bench, t_stack *a, t_stack *b)
-{
-	int		i;
-	int		n;
-
-	while (a->size > 1)
-	{
-		i = 0;
-		n = a->size - 1;
-		while (i < n)
-		{
-			if (a->top->value < a->top->next->value)
-				sa(bench, a);
-			ra(bench, a);
-			i++;
-		}
-		pb(bench, a, b);
-	}
-	while (b->size > 0)
-		pa(bench, a, b);
 }
