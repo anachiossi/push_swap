@@ -68,6 +68,27 @@ int	input_to_stack(char **arg, t_stack *a)
 	return (1);
 }
 
+void	assign_ranks(t_stack *a)
+{
+	int 	r;
+	t_node	*n;
+	t_node	*t;
+
+	n = a->top;
+	while (n)
+	{
+		r = 0;
+		t = a->top;
+		while (t)
+		{
+			r += (n->value > t->value);
+			t = t->next;
+		}
+		n->rank = r;
+		n = n->next;
+	}
+}
+
 int	assign_flags(t_ps_flags *f, char **argv, int argc)
 {
 	int	i;

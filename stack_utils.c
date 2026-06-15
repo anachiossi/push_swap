@@ -61,7 +61,6 @@ void	push_bottom(t_stack *stack, t_node *new)
 	stack->size += 1;
 }
 
-// still uses a while, has to find the prev to bottom on every move
 t_node	*pop_bottom(t_stack *stack)
 {
 	t_node	*temp;

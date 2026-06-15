@@ -27,6 +27,7 @@ int	main(int argc, char **argv)
 	i = assign_flags(&f, argv, argc);
 	if (!a || !b || i < 0 || !input_to_stack(&argv[i], a))
 		return (free_stack(a), free_stack(b), write(1, "Error\n", 6), 0);
+	assign_ranks(a);
 	d = disorder(a);
 	dispatcher(a, b, f);
 	if (f.bench)

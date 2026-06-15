@@ -22,6 +22,7 @@ int					ft_printf(const char *format, ...);
 typedef struct s_node
 {
 	int				value;
+	int				rank;
 	struct s_node	*next;
 }					t_node;
 
@@ -44,6 +45,7 @@ typedef struct s_ps_flags
 int					is_valid(char *s);
 int					input_to_stack(char **arg, t_stack *a);
 int					assign_flags(t_ps_flags *f, char **argv, int argc);
+void				assign_ranks(t_stack *a);
 void				benchmode(float d, int *n, int level);
 
 // stack creation — stack.c
@@ -91,7 +93,7 @@ void				chunk_sort(int bench, t_stack *a, t_stack *b); // to do
 void				radix_sort(int bench, t_stack *a, t_stack *b); // to do
 
 // sorting — simple_sort.c
-void				small_sort(int bench, t_stack *a, t_stack *b);
+void				selection_sort(int bench, t_stack *a, t_stack *b);
 void				min_top(int bench, t_stack *a);
 int					find_min(t_stack *x);
 void				sort_2(int bench, t_stack *a);

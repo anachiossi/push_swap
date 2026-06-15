@@ -103,7 +103,7 @@ void	min_top(int bench, t_stack *a)
 			rra(bench, a);
 }
 
-void	small_sort(int bench, t_stack *a, t_stack *b)
+void	selection_sort(int bench, t_stack *a, t_stack *b)
 {
 	float	d;
 
@@ -118,7 +118,7 @@ void	small_sort(int bench, t_stack *a, t_stack *b)
 	{
 		min_top(bench, a);
 		pb(bench, a, b);
-		small_sort(bench, a, b);
+		selection_sort(bench, a, b);
 		pa(bench, a, b);
 	}
 }

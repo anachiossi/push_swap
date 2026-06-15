@@ -1,14 +1,11 @@
-
-				
+		
 SORTING:
 
 6 - CREATE MEDIUM chunk sort O(n√n) or other 
-7 - CREATE COMPLEX radix LSD O(n log n) OR quicksort with optimum pivot
 
-8? - MAYBE? special case: very high size but very low disorder (selective insertion? target movements with rank and do selective action)
 
 AFTER SORTING OPTIMIZATION:
-
+(only makes sense if any of the sorting produces this sequences of operations)
 1 - FIX : instead of printing directly, save all operations to a list of operations, 
 2 - CREATE the operation optimizer: read the list
 	if it finds ra & rb substitute for rr.
@@ -17,6 +14,5 @@ AFTER SORTING OPTIMIZATION:
 
 TOOLS:
 
-1 - CREATE separate tool for generating comand lines with 500 valid numbers as inputs
-2 - CREATE A operation O mesure: calculates Big O from input size and operation numbers. can use benchmark as input (would be nice)
+2 - CREATE A operation O mesure: calculates Big O from input size and operation numbers. 
  
