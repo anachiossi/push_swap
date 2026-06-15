@@ -28,6 +28,7 @@ typedef struct s_gen
 	float	dis_now;
 	int		level;
 	int		bench;
+	int		use_rank;
 	int		*rank;
 	int		*value;
 }			t_gen;
@@ -52,5 +53,8 @@ int			gen_value(t_gen *g);
 /* gen_text.c */
 void		print_benchmark(t_gen *g);
 void		print_input(t_gen *g);
+
+/*main.c*/
+int			get_rank_or_value(t_gen *g);
 
 #endif

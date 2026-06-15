@@ -25,15 +25,33 @@ static int	init_targets(t_gen *g)
 	return (1);
 }
 
-int	main(void)
+void	init_targets_auto(t_gen *g, char **argv)
+{
+	g->size = ft_atoi(argv[1]);
+	g->dis_target = (float)atof(argv[2]);
+	g->level = ft_atoi(argv[3]);
+	g->bench = ft_atoi(argv[4]);
+	g->use_rank = ft_atoi(argv[5]);
+}
+int	main(int argc, char **argv)
 {
 	t_gen	g;
 
-	srand(time(NULL) ^ (unsigned int)getpid());
-	ft_printf("Push Swap input generator\n");
-	ft_printf("Let's set the parameters:\n");
-	if (!init_targets(&g))
+if (argc != 1 && argc != 6)
+	{
+		ft_printf("Usage: ps_gen [size disorder(0.0-1.0) level(0-3) bench(0/1) use_rank(0/1)]\n");
 		return (1);
+	}
+	srand(time(NULL) ^ (unsigned int)getpid());
+	if (argc == 1)
+	{
+		ft_printf("Push Swap input generator\n");
+		ft_printf("Let's set the parameters:\n");
+		if (!init_targets(&g))
+			return (1);
+	}
+	else
+		init_targets_auto(&g, argv);
 	if (!gen_rank(&g))
 		return (1);
 	if (!gen_value(&g))

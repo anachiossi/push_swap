@@ -52,5 +52,9 @@ void	print_input(t_gen *g)
 {
 	ft_printf("./push_swap ");
 	print_flags(g);
-	print_array(g->value, g->size);
+	ft_printf("\n");
+	if (g->use_rank)
+		print_array(g->rank, g->size);
+	else
+		print_array(g->value, g->size);
 }

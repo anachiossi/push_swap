@@ -98,6 +98,28 @@ int	get_bench(t_gen *g)
 	return (1);
 }
 
+int	get_rank_or_value(t_gen *g)
+{
+	char	*line;
+
+	g->use_rank = -1;
+	while (g->use_rank == -1)
+	{
+		ft_printf("Print rank (0 to 1000) or value (random ints)?\n(rank / value)\n");
+		line = get_next_line(0);
+		if (!line)
+			return (0);
+		if (!ft_strncmp(line, "rank\n", 5))
+			g->use_rank = 1;
+		else if (!ft_strncmp(line, "value\n", 6))
+			g->use_rank = 0;
+		else
+			ft_printf("Invalid: enter rank or value\n");
+		free(line);
+	}
+	return (1);
+}
+
 int	gen_rank(t_gen *g)
 {
 	g->rank = malloc(g->size * sizeof(int));
