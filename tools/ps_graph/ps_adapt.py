@@ -2,111 +2,79 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
+from matplotlib.colors import ListedColormap
 
 df = pd.read_csv('ps_graph_data.txt', sep='\t')
 
-sizes    = sorted(df['size'].unique())
+algos     = [a for a in ['simple', 'medium', 'complex'] if a in df['algorithm'].values]
+sizes     = sorted(df['size'].unique())
 disorders = sorted(df['disorder'].unique())
 
-simple_  = df[df['algorithm'] == 'simple'].set_index(['size', 'disorder'])['ops_avg']
-complex_ = df[df['algorithm'] == 'complex'].set_index(['size', 'disorder'])['ops_avg']
-diff     = simple_ - complex_   # negative = simple wins, positive = complex wins
+pivot = df[df['algorithm'].isin(algos)].pivot_table(
+    index=['size', 'disorder'], columns='algorithm', values='ops_avg'
+)
 
-def crossovers(n):
+def best(row):
+    valid = row[algos].dropna()
+    return valid.idxmin() if not valid.empty else None
+
+pivot['winner'] = pivot.apply(best, axis=1)
+
+algo_idx = {a: i for i, a in enumerate(algos)}
+colors   = {'simple': '#4fc3f7', 'medium': '#81c784', 'complex': '#ffb74d'}
+
+def winner_zones(n):
     pts = []
-    prev_winner = None
-    for i in range(len(disorders) - 1):
-        d1, d2 = disorders[i], disorders[i + 1]
+    for d in disorders:
         try:
-            v1, v2 = diff[(n, d1)], diff[(n, d2)]
-        except KeyError:
-            continue
-        if v1 * v2 < 0:
-            cx = d1 - v1 * (d2 - d1) / (v2 - v1)
-            pts.append(cx)
-    return pts
-
-# --- size crossover at d=0.5 ---
-n_cross = None
-for i in range(len(sizes) - 1):
-    n1, n2 = sizes[i], sizes[i + 1]
-    try:
-        v1, v2 = diff[(n1, 0.5)], diff[(n2, 0.5)]
-        if v1 * v2 < 0:
-            n_cross = n1 - v1 * (n2 - n1) / (v2 - v1)
-            break
-    except KeyError:
-        pass
-
-# --- disorder crossovers per size ---
-d_low_pts  = []   # (n, d) where simple → complex
-d_high_pts = []   # (n, d) where complex → simple
-
-for n in sizes:
-    cx = crossovers(n)
-    if len(cx) >= 2:
-        lo, hi = sorted(cx)[:2]
-        d_low_pts.append((n, lo))
-        d_high_pts.append((n, hi))
-    elif len(cx) == 1:
-        try:
-            first = diff[(n, disorders[0])]
-            if first < 0:
-                d_low_pts.append((n, cx[0]))
-            else:
-                d_high_pts.append((n, cx[0]))
+            w = pivot.loc[(n, d), 'winner']
+            if pd.notna(w):
+                pts.append((d, w))
         except KeyError:
             pass
+    zones = []
+    for d, w in pts:
+        if zones and zones[-1][2] == w:
+            zones[-1] = (zones[-1][0], d, w)
+        else:
+            zones.append((d, d, w))
+    return zones
 
-# --- print report ---
+def fmt_zones(zones):
+    parts = []
+    for i, (d0, d1, w) in enumerate(zones):
+        if len(zones) == 1:
+            parts.append(f'{w}: always')
+        elif i == 0:
+            parts.append(f'{w}: d≤{d1:.2f}')
+        elif i == len(zones) - 1:
+            parts.append(f'{w}: d≥{d0:.2f}')
+        else:
+            parts.append(f'{w}: {d0:.2f}–{d1:.2f}')
+    return '  |  '.join(parts)
+
+# --- report ---
 print()
 print("  ps_adapt  |  empirical algorithm selection zones")
 print("  " + "=" * 50)
 
-if n_cross:
-    print(f"\n  size crossover (d=0.5):  n ≈ {n_cross:.0f}")
-    print(f"    → below n≈{n_cross:.0f} : simple wins regardless of disorder")
-
-print(f"\n  disorder crossovers per size (where simple ↔ complex):")
-print(f"  {'n':>6}  {'simple wins when':>35}")
-print("  " + "-" * 44)
-
+print(f"\n  winner by size  (d=0.5):")
+prev = None
 for n in sizes:
-    cx = crossovers(n)
     try:
-        first = diff[(n, disorders[0])]
+        w = pivot.loc[(n, 0.5), 'winner']
     except KeyError:
         continue
+    if w != prev:
+        print(f"    n={n}: → {w}")
+        prev = w
 
-    if not cx:
-        zone = 'always' if first <= 0 else 'never'
-        print(f"  {n:>6}  {zone:>35}")
-    elif len(cx) == 1:
-        c = cx[0]
-        zone = f'd < {c:.2f}' if first < 0 else f'd > {c:.2f}'
-        print(f"  {n:>6}  {zone:>35}")
-    else:
-        lo, hi = sorted(cx)[:2]
-        if first < 0:
-            zone = f'd < {lo:.2f}  or  d > {hi:.2f}'
-        else:
-            zone = f'{lo:.2f} < d < {hi:.2f}'
-        print(f"  {n:>6}  {zone:>35}")
-
-# --- adaptive rules summary ---
-if d_low_pts and d_high_pts and n_cross:
-    lo_ns, lo_ds = zip(*d_low_pts)
-    hi_ns, hi_ds = zip(*d_high_pts)
-    avg_lo = np.mean(lo_ds)
-    avg_hi = np.mean(hi_ds)
-    print(f"\n  adaptive rule (simplified average thresholds):")
-    print(f"    if n < {n_cross:.0f}:")
-    print(f"      → use simple")
-    print(f"    else:")
-    print(f"      if d < {avg_lo:.2f} or d > {avg_hi:.2f}:")
-    print(f"        → use simple")
-    print(f"      else:")
-    print(f"        → use complex")
+print(f"\n  winner by disorder per size:")
+print(f"  {'n':>6}  winner zones")
+print("  " + "-" * 60)
+for n in sizes:
+    zones = winner_zones(n)
+    print(f"  {n:>6}  {fmt_zones(zones)}")
 
 print()
 
@@ -115,13 +83,17 @@ grid = np.full((len(sizes), len(disorders)), np.nan)
 for i, n in enumerate(sizes):
     for j, d in enumerate(disorders):
         try:
-            grid[i, j] = 0 if diff[(n, d)] <= 0 else 1
+            w = pivot.loc[(n, d), 'winner']
+            if pd.notna(w):
+                grid[i, j] = algo_idx[w]
         except KeyError:
             pass
 
+palette = [colors[a] for a in algos]
+cmap    = ListedColormap(palette)
+
 fig, ax = plt.subplots(figsize=(10, 6))
-cmap = plt.cm.colors.ListedColormap(['#4fc3f7', '#ffb74d'])
-ax.imshow(grid, aspect='auto', origin='lower', cmap=cmap, vmin=0, vmax=1)
+ax.imshow(grid, aspect='auto', origin='lower', cmap=cmap, vmin=0, vmax=len(algos) - 1)
 
 ax.set_xticks(range(len(disorders)))
 ax.set_xticklabels([f'{d:.2f}' for d in disorders], rotation=45, ha='right', fontsize=7)
@@ -129,17 +101,10 @@ ax.set_yticks(range(len(sizes)))
 ax.set_yticklabels(sizes, fontsize=7)
 ax.set_xlabel('disorder')
 ax.set_ylabel('size')
-ax.set_title('best algorithm per (size, disorder)\n[blue = simple, orange = complex]')
+ax.set_title('best algorithm per (size, disorder)')
 
-simple_patch  = mpatches.Patch(color='#4fc3f7', label='simple')
-complex_patch = mpatches.Patch(color='#ffb74d', label='complex')
-ax.legend(handles=[simple_patch, complex_patch], loc='upper left')
-
-if n_cross:
-    n_idx = np.interp(n_cross, sizes, range(len(sizes)))
-    ax.axhline(n_idx, color='white', linestyle='--', linewidth=1.2)
-    ax.text(len(disorders) - 1, n_idx + 0.2, f'n≈{n_cross:.0f}', color='white', fontsize=8, ha='right')
+patches = [mpatches.Patch(color=colors[a], label=a) for a in algos]
+ax.legend(handles=patches, loc='upper left')
 
 plt.tight_layout()
 plt.savefig('ps_adapt.png', dpi=150)
-plt.show()

@@ -108,4 +108,3 @@ ax9.legend()
 
 plt.tight_layout()
 plt.savefig('ps_plot.png', dpi=150)
-plt.show()

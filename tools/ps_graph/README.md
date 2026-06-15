@@ -129,7 +129,9 @@ All algorithms present in the data are plotted automatically — no code change 
 python3 ps_adapt.py
 ```
 
-Investigation tool that finds the crossover regions where simple outperforms complex across the full (n, disorder) plane. Produces a heatmap and derives a concrete adaptive decision rule: which algorithm to use given input size and disorder. Intentionally hardcoded to simple vs complex — this is the analysis that informs the adaptive algorithm design, not a general comparison tool.
+Investigation tool that finds the crossover regions across the full (n, disorder) plane. For each cell it picks the algorithm with the lowest ops, then reports the winner zones per size and saves a heatmap to `ps_adapt.png`.
+
+Works with however many algorithms are present in the data — currently simple and complex, and will automatically include medium as a third color once its data is available. The report format stays the same regardless of how many algorithms are compared.
 
 ## How the template system works
 
