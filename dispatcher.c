@@ -40,18 +40,13 @@ float	disorder(t_stack *x)
 
 void	dispatcher(t_stack *a, t_stack *b, t_ps_flags f)
 {
+	/*
 	float	d;
 
 	d = disorder(a);
-/*	if (a->size <= 5 || f.level <= 1)
-		small_sort(f.bench, a, b);
-	else if (d <= 0.5 || f.level <= 2)
-		chunk_sort(f.bench, a, b);
-	else
-		radix_sort(f.bench, a, b);
-*/
-	if (f.level == 1)
-		small_sort(f.bench, a, b);
+	*/
+	if ((a->size <= 3 && f.level == 0) || f.level == 1)
+		selection_sort(f.bench, a, b);
 	else if (f.level == 2)
 		chunk_sort(f.bench, a, b);
 	else if (f.level == 3)
