@@ -105,20 +105,15 @@ void	min_top(int bench, t_stack *a)
 
 void	selection_sort(int bench, t_stack *a, t_stack *b)
 {
-	float	d;
-
-	d = disorder(a);
-	if (d == 0 || a->size == 1)
-		return ;
+	while (a->size > 3 && disorder(a) != 0)
+	{
+		min_top(bench, a);
+		pb(bench, a, b);
+	}
 	if (a->size == 2)
 		sort_2(bench, a);
 	else if (a->size == 3)
 		sort_3(bench, a);
-	else
-	{
-		min_top(bench, a);
-		pb(bench, a, b);
-		selection_sort(bench, a, b);
+	while (b->size)
 		pa(bench, a, b);
-	}
 }
