@@ -87,10 +87,14 @@ void				rrr(int bench, t_stack *a, t_stack *b);
 // adaptive algorithm — dispatcher.c
 void				dispatcher(t_stack *a, t_stack *b, t_ps_flags f);
 float				disorder(t_stack *h);
+int					is_sorted(t_stack *a);
 
 // sorting — sort.c
 void				chunk_sort(int bench, t_stack *a, t_stack *b); // to do
 void				radix_sort(int bench, t_stack *a, t_stack *b); // to do
+
+// sorting — sort_inverted.c (d=1.0 special case)
+void				sort_inverted(int bench, t_stack *a, t_stack *b);
 
 // sorting — simple_sort.c
 void				selection_sort(int bench, t_stack *a, t_stack *b);

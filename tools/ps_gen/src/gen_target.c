@@ -119,20 +119,3 @@ int	get_rank_or_value(t_gen *g)
 	}
 	return (1);
 }
-
-int	gen_rank(t_gen *g)
-{
-	g->rank = malloc(g->size * sizeof(int));
-	if (!g->rank)
-		return (0);
-	if (g->dis_target < 0.5f)
-		fill_ascending(g);
-	else
-		fill_descending(g);
-	calc_disorder(g);
-	if (g->dis_now < g->dis_target)
-		make_chaos(g);
-	else
-		make_order(g);
-	return (1);
-}

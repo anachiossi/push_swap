@@ -105,7 +105,7 @@ void	min_top(int bench, t_stack *a)
 
 void	selection_sort(int bench, t_stack *a, t_stack *b)
 {
-	while (a->size > 3 && disorder(a) != 0)
+	while (a->size > 3 && !is_sorted(a))
 	{
 		min_top(bench, a);
 		pb(bench, a, b);

@@ -7,9 +7,9 @@ OBJ_DIR		= obj
 INC_DIR		= inc
 LIB_DIR		= lib
 
-SRCS		= $(SRC_DIR)/main.c $(SRC_DIR)/gen_target.c \
-			$(SRC_DIR)/gen_agents.c $(SRC_DIR)/gen_number.c \
-			$(SRC_DIR)/gen_text.c
+SRCS		= $(SRC_DIR)/gen_main.c $(SRC_DIR)/gen_target.c \
+			$(SRC_DIR)/gen_rank.c $(SRC_DIR)/gen_agents.c \
+			$(SRC_DIR)/gen_number.c $(SRC_DIR)/gen_text.c
 OBJS		= $(addprefix $(OBJ_DIR)/, $(notdir $(SRCS:.c=.o)))
 INCLUDES	= -I $(INC_DIR)
 LIBS		= $(LIB_DIR)/libft.a $(LIB_DIR)/libftprintf.a $(LIB_DIR)/libgnl.a -lm

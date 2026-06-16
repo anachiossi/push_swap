@@ -38,6 +38,8 @@ int			get_size(t_gen *g);
 int			get_disorder(t_gen *g);
 int			get_algorithm(t_gen *g);
 int			get_bench(t_gen *g);
+
+/* gen_rank.c */
 int			gen_rank(t_gen *g);
 
 /* gen_agents.c */

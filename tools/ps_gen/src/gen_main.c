@@ -33,20 +33,21 @@ void	init_targets_auto(t_gen *g, char **argv)
 	g->bench = ft_atoi(argv[4]);
 	g->use_rank = ft_atoi(argv[5]);
 }
+
 int	main(int argc, char **argv)
 {
 	t_gen	g;
 
-if (argc != 1 && argc != 6)
+	if (argc != 1 && argc != 6)
 	{
-		ft_printf("Usage: ps_gen [size disorder(0.0-1.0) level(0-3) bench(0/1) use_rank(0/1)]\n");
+		ft_printf("Usage: ps_gen [size disorder(0.0-1.0) "
+			"level(0-3) bench(0/1) use_rank(0/1)]\n");
 		return (1);
 	}
 	srand(time(NULL) ^ (unsigned int)getpid());
 	if (argc == 1)
 	{
 		ft_printf("Push Swap input generator\n");
-		ft_printf("Let's set the parameters:\n");
 		if (!init_targets(&g))
 			return (1);
 	}
@@ -59,7 +60,5 @@ if (argc != 1 && argc != 6)
 	calc_disorder(&g);
 	print_benchmark(&g);
 	print_input(&g);
-	free(g.rank);
-	free(g.value);
-	return (0);
+	return (free(g.rank), free(g.value), 0);
 }

@@ -6,12 +6,12 @@
 /*   By: gsantoni <gsantoni@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/11 14:00:15 by anade-mo          #+#    #+#             */
-/*   Updated: 2026/06/14 11:22:57 by gsantoni         ###   ########.fr       */
+/*   Updated: 2026/06/16 21:09:22 by anade-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
 #include "ft_printf.h"
+#include "push_swap.h"
 
 int	is_valid(char *s)
 {
@@ -70,7 +70,7 @@ int	input_to_stack(char **arg, t_stack *a)
 
 void	assign_ranks(t_stack *a)
 {
-	int 	r;
+	int		r;
 	t_node	*n;
 	t_node	*t;
 
@@ -128,8 +128,8 @@ void	benchmode(float d, int *n, int level)
 	ft_printf("[bench] disorder: %.2f%%\n", d * 100);
 	ft_printf("[bench] strategy: %s\n", s[level]);
 	ft_printf("[bench] total ops: %d\n", n[11]);
-	ft_printf("[bench] sa: %d\tsb: %d\tss: %d\tpa: %d\tpb: %d\n", n[0],
-		n[1], n[2], n[3], n[4]);
+	ft_printf("[bench] sa: %d\tsb: %d\tss: %d\tpa: %d\tpb: %d\n", n[0], n[1],
+		n[2], n[3], n[4]);
 	ft_printf("[bench] ra: %d\trb: %d\trr: %d\trra: %d\trrb: %d\trrr: %d\n",
 		n[5], n[6], n[7], n[8], n[9], n[10]);
 }

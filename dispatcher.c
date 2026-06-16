@@ -6,7 +6,7 @@
 /*   By: gsantoni <gsantoni@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/11 00:00:00 by anade-mo          #+#    #+#             */
-/*   Updated: 2026/06/15 18:07:11 by gsantoni         ###   ########.fr       */
+/*   Updated: 2026/06/16 21:08:46 by anade-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,54 @@ float	disorder(t_stack *x)
 	return ((float)m / (float)p);
 }
 
+int	is_sorted(t_stack *a)
+{
+	t_node	*cur;
+
+	cur = a->top;
+	while (cur && cur->next)
+	{
+		if (cur->value > cur->next->value)
+			return (0);
+		cur = cur->next;
+	}
+	return (1);
+}
+
+void	adaptive_sort(t_stack *a, t_stack *b, t_ps_flags f)
+{
+	float	d;
+	int		n;
+
+	n = a->size;
+	d = disorder(a);
+	if (d == 1)
+		return (sort_inverted(f.bench, a, b));
+	else if (n <= 100)
+		selection_sort(f.bench, a, b);
+	else if (n <= 500)
+	{
+		if (d < 0.2 || d > 0.8)
+			selection_sort(f.bench, a, b);
+		else
+			radix_sort(f.bench, a, b);
+	}
+	else if (n > 500)
+	{
+		if (d < 0.05 || d > 0.95)
+			selection_sort(f.bench, a, b);
+		else
+			radix_sort(f.bench, a, b);
+	}
+}
+
 void	dispatcher(t_stack *a, t_stack *b, t_ps_flags f)
 {
-	/*
-	float	d;
-
-	d = disorder(a);
-	*/
-	if ((a->size <= 3 && f.level == 0) || f.level == 1)
+	if (is_sorted(a))
+		return ;
+	if (f.level == 0)
+		adaptive_sort(a, b, f);
+	else if (f.level == 1)
 		selection_sort(f.bench, a, b);
 	else if (f.level == 2)
 		chunk_sort(f.bench, a, b);
