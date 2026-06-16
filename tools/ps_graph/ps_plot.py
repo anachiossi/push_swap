@@ -2,7 +2,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 df = pd.read_csv('ps_graph_data.txt', sep='\t')
-ops_df = df[df['algorithm'] != 'adaptive']
+ops_df = df  # adaptive now shown everywhere (it should trace the best-of envelope)
 
 def mark_disorder_crossovers(ax, n):
     sub = ops_df[ops_df['size'] == n]

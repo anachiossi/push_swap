@@ -7,8 +7,9 @@ PS_GEN="__PS_GEN__"
 # --- sweep parameters ---
 SIZES=(1 5 10 20 35 50 65 80 100 150 200 300 500 750 1000)
 DISORDERS=(0 0.05 0.1 0.15 0.2 0.25 0.3 0.35 0.4 0.45 0.5 0.55 0.6 0.65 0.7 0.75 0.8 0.85 0.9 0.95 1.0)
-ALGORITHMS=("simple:1" "medium:2" "complex:3")
-# add "adaptive:0" when implemented — appears in runtime graph only
+ALGORITHMS=("simple:1" "complex:3" "adaptive:0")
+# medium (chunk_sort) is still a stub -> reads 0 ops until the code lands;
+# kept in the sweep so it's tested automatically once chunk_sort is done.
 RUNS=5
 
 OUTPUT=${1:-ps_graph_data.txt}

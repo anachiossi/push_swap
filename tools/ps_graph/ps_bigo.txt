@@ -1,5 +1,6 @@
   empirical Big O  (log-log fit, disorder=0.5, n≥20)
   algorithm   exponent         class      R²
   ------------------------------------------
+  adaptive       1.333    O(n log n)  0.9900
   complex        1.159    O(n log n)  0.9987
-  simple         1.790         O(n²)  0.9978
+  simple         1.783         O(n²)  0.9978
