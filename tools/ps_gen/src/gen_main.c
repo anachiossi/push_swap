@@ -6,7 +6,7 @@
 /*   By: anade-mo <anade-mo <marvin@42.fr>>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/14 18:58:42 by anade-mo          #+#    #+#             */
-/*   Updated: 2026/06/17 16:09:27 by anade-mo         ###   ########.fr       */
+/*   Updated: 2026/06/17 16:12:25 by anade-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ int	main(int argc, char **argv)
 
 	if (argc != 1 && argc != 6)
 	{
-		ft_printf("Usage: ps_gen [size disorder(0.0-1.0) "
-			"level(0-3) bench(0/1) use_rank(0/1)]\n");
+		ft_printf("Usage: ps_gen [size(0-10000) | disorder(0.0-1.0) "
+			"| level(0-3) | bench(0/1) | use_rank(0/1)]\n");
 		return (1);
 	}
 	srand(time(NULL) ^ (unsigned int)getpid());
