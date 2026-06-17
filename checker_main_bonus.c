@@ -6,7 +6,7 @@
 /*   By: anade-mo <anade-mo <marvin@42.fr>>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/17 12:59:08 by anade-mo          #+#    #+#             */
-/*   Updated: 2026/06/17 17:25:13 by anade-mo         ###   ########.fr       */
+/*   Updated: 2026/06/17 19:40:24 by anade-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ int main (int argc, char **argv)
 	t_stack		*a;
 	t_stack		*b;
 	t_ps_flags	f;
-	float		d;
 	int			i;
+	float		d;
 
 	if (argc < 2)
 		return (0);
@@ -34,12 +34,14 @@ int main (int argc, char **argv)
 	i = assign_flags(&f, argv, argc);
 	if (!a || !b || i < 0 || !input_to_stack(&argv[i], a))
 		return (free_stack(a), free_stack(b), write(1, "Error\n", 6), 0);
-	/* TODO drop unused 'd' (-Werror); the checker computes no disorder */
-	/* TODO keep main thin: push work to helpers (var & 25-line caps) */
-	/* TODO 1 replay: read_ops(a, b, f) -> stream get_next_line(0) */
-	/* TODO   apply each op with bench = 1; free each line as you go */
-	/* TODO   unknown op -> free stacks + "Error\n" + stop reading */
-	/* TODO 2 verdict: is_sorted(a) && b->size == 0 ? "OK\n" : "KO\n" */
-	/* TODO 3 free_stack(a) + free_stack(b) on every exit path */
+	d = disorder(a);
+	read_ops(a, b, f);
+	if (is_sorted(a) && b->size == 0)
+		ft_printf("OK\n");
+	else
+		ft_printf("KO\n");
+	print_check_bench(a, d, f);
+	free_stack(a);
+	free_stack(b);
 	return (0);
 }
