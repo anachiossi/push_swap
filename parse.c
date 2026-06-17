@@ -6,7 +6,7 @@
 /*   By: anade-mo <anade-mo <marvin@42.fr>>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/11 14:00:15 by anade-mo          #+#    #+#             */
-/*   Updated: 2026/06/17 12:06:58 by anade-mo         ###   ########.fr       */
+/*   Updated: 2026/06/17 12:09:52 by anade-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,10 +121,10 @@ void	benchmode(float d, int *n, int level)
 {
 	char	*s[4];
 
-	s[0] = "adaptive";
-	s[1] = "selection";
-	s[2] = "chunk";
-	s[3] = "radix";
+	s[0] = "adaptive ";
+	s[1] = "selection sort O(n²)";
+	s[2] = "chunk sort O(n√n)";
+	s[3] = "radix sort O(n log n)";
 	ft_printf("[bench] disorder: %.2f%%\n", d * 100);
 	ft_printf("[bench] strategy: %s\n", s[level]);
 	ft_printf("[bench] total ops: %d\n", n[11]);
