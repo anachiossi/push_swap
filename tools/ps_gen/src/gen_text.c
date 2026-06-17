@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   gen_text.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anade-mo <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: anade-mo <anade-mo <marvin@42.fr>>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/13 21:18:17 by anade-mo          #+#    #+#             */
-/*   Updated: 2026/06/14 22:59:21 by anade-mo         ###   ########.fr       */
+/*   Updated: 2026/06/17 16:07:28 by anade-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ void	print_benchmark(t_gen *g)
 
 void	print_input(t_gen *g)
 {
-	ft_printf("./push_swap ");
 	print_flags(g);
 	if (g->use_rank)
 		print_array(g->rank, g->size);

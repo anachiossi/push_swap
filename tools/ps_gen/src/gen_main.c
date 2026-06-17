@@ -6,7 +6,7 @@
 /*   By: anade-mo <anade-mo <marvin@42.fr>>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/14 18:58:42 by anade-mo          #+#    #+#             */
-/*   Updated: 2026/06/17 11:31:53 by anade-mo         ###   ########.fr       */
+/*   Updated: 2026/06/17 16:09:27 by anade-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	main(int argc, char **argv)
 	if (!gen_value(&g))
 		return (free(g.rank), 1);
 	calc_disorder(&g);
-	print_benchmark(&g);
+	/*print_benchmark(&g);*/
 	print_input(&g);
 	return (free(g.rank), free(g.value), 0);
 }
