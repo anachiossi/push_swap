@@ -13,8 +13,8 @@ OBJS	= $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
 
 BONUS		= checker
 BONUS_SRCS	= checker_main_bonus.c checker_bonus.c checker_utils_bonus.c
-BONUS_SHARED	= parse.c stack.c stack_utils.c \
-		  operations_base.c operations_ps.c operations_r.c operations_rr.c
+# full access: every push_swap source except main.c (checker has its own main)
+BONUS_SHARED	= $(filter-out main.c, $(SRCS))
 BONUS_OBJS	= $(addprefix $(OBJ_DIR)/, \
 		  $(BONUS_SRCS:.c=.o) $(BONUS_SHARED:.c=.o))
 
