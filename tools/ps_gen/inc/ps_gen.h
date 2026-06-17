@@ -13,8 +13,6 @@
 #ifndef PS_GEN_H
 # define PS_GEN_H
 
-# include "ft_printf.h"
-# include "get_next_line.h"
 # include "libft.h"
 # include <stdlib.h>
 # include <string.h>
