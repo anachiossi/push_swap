@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsantoni <gsantoni@student.42roma.it>      +#+  +:+       +#+        */
+/*   By: anade-mo <anade-mo <marvin@42.fr>>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/11 14:00:15 by anade-mo          #+#    #+#             */
-/*   Updated: 2026/06/16 21:09:22 by anade-mo         ###   ########.fr       */
+/*   Updated: 2026/06/17 12:06:58 by anade-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,7 @@ void	benchmode(float d, int *n, int level)
 	char	*s[4];
 
 	s[0] = "adaptive";
-	s[1] = "simple";
+	s[1] = "selection";
 	s[2] = "chunk";
 	s[3] = "radix";
 	ft_printf("[bench] disorder: %.2f%%\n", d * 100);
