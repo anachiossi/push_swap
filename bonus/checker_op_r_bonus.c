@@ -1,38 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   operations_r.c                                     :+:      :+:    :+:   */
+/*   checker_op_r_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsantoni <gsantoni@student.42roma.it>      +#+  +:+       +#+        */
+/*   By: anade-mo <anade-mo <marvin@42.fr>>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/11 13:58:00 by anade-mo          #+#    #+#             */
-/*   Updated: 2026/06/13 10:11:02 by gsantoni         ###   ########.fr       */
+/*   Updated: 2026/06/18 00:00:00 by anade-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "checker_bonus.h"
 
-void	ra(int bench, t_stack *a)
+void	ckr_ra(t_stack *a, t_stack *b, t_op_count *c)
 {
+	(void)b;
 	r(a);
-	op_count(5);
-	if (!bench)
-		write(1, "ra\n", 3);
+	c->ra++;
+	c->total++;
 }
 
-void	rb(int bench, t_stack *b)
+void	ckr_rb(t_stack *a, t_stack *b, t_op_count *c)
 {
+	(void)a;
 	r(b);
-	op_count(6);
-	if (!bench)
-		write(1, "rb\n", 3);
+	c->rb++;
+	c->total++;
 }
 
-void	rr(int bench, t_stack *a, t_stack *b)
+void	ckr_rr(t_stack *a, t_stack *b, t_op_count *c)
 {
 	r(a);
 	r(b);
-	op_count(7);
-	if (!bench)
-		write(1, "rr\n", 3);
+	c->rr++;
+	c->total++;
 }

@@ -6,26 +6,18 @@
 /*   By: anade-mo <anade-mo <marvin@42.fr>>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/17 12:59:08 by anade-mo          #+#    #+#             */
-/*   Updated: 2026/06/17 19:40:24 by anade-mo         ###   ########.fr       */
+/*   Updated: 2026/06/18 18:03:39 by anade-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "checker_bonus.h"
 
-/* 
- push_swap $(./tools/ps_gen/ps_gen 5 0.2 1 0 1) | ./checker $(./tools/ps_gen/ps_gen 5 0.2 1 0 1) 
- per leggere input utilizzare get next line con FD = 0 che legge dallo standard input.
- ogni riga letta rappresenta una singola istruzione di push swap.
- mentre argomenti con argc e argv
-*/
-
-int main (int argc, char **argv)
+int		main(int argc, char **argv)
 {
 	t_stack		*a;
 	t_stack		*b;
 	t_ps_flags	f;
 	int			i;
-	float		d;
 
 	if (argc < 2)
 		return (0);
@@ -34,14 +26,7 @@ int main (int argc, char **argv)
 	i = assign_flags(&f, argv, argc);
 	if (!a || !b || i < 0 || !input_to_stack(&argv[i], a))
 		return (free_stack(a), free_stack(b), write(1, "Error\n", 6), 0);
-	d = disorder(a);
 	read_ops(a, b, f);
-	if (is_sorted(a) && b->size == 0)
-		ft_printf("OK\n");
-	else
-		ft_printf("KO\n");
-	print_check_bench(a, d, f);
-	free_stack(a);
-	free_stack(b);
-	return (0);
+	print_result(a, b);
+	return (free_stack(a), free_stack(b), 0);
 }

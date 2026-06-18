@@ -1,6 +1,6 @@
 NAME	= push_swap
 CC		= cc
-CFLAGS	= -Wall -Wextra -Werror
+CFLAGS	= -Wall -Wextra -Werror -I.
 
 LIBFT		= libft.a
 
@@ -12,11 +12,13 @@ OBJ_DIR	= obj
 OBJS	= $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
 
 BONUS		= checker
-BONUS_SRCS	= checker_main_bonus.c checker_bonus.c checker_utils_bonus.c
-# full access: every push_swap source except main.c (checker has its own main)
+BONUS_DIR	= bonus
+BONUS_SRCS	= checker_main_bonus.c checker_bonus.c checker_utils_bonus.c \
+			  checker_op_ps_bonus.c checker_op_r_bonus.c checker_op_rr_bonus.c
+
 BONUS_SHARED	= $(filter-out main.c, $(SRCS))
 BONUS_OBJS	= $(addprefix $(OBJ_DIR)/, \
-		  $(BONUS_SRCS:.c=.o) $(BONUS_SHARED:.c=.o))
+			  $(BONUS_SRCS:.c=.o) $(BONUS_SHARED:.c=.o))
 
 all: $(OBJ_DIR) $(NAME)
 
@@ -32,6 +34,9 @@ $(BONUS): $(BONUS_OBJS)
 	$(CC) $(CFLAGS) $(BONUS_OBJS) $(LIBFT) -o $(BONUS)
 
 $(OBJ_DIR)/%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+$(OBJ_DIR)/%.o: $(BONUS_DIR)/%.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:

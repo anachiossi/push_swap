@@ -1,54 +1,51 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   operations_ps.c                                    :+:      :+:    :+:   */
+/*   checker_op_ps_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsantoni <gsantoni@student.42roma.it>      +#+  +:+       +#+        */
+/*   By: anade-mo <anade-mo <marvin@42.fr>>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/11 10:29:16 by anade-mo          #+#    #+#             */
-/*   Updated: 2026/06/12 18:52:33 by gsantoni         ###   ########.fr       */
+/*   Updated: 2026/06/18 00:00:00 by anade-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "checker_bonus.h"
 
-void	sa(int bench, t_stack *a)
+void	ckr_sa(t_stack *a, t_stack *b, t_op_count *c)
+{
+	(void)b;
+	s(a);
+	c->sa++;
+	c->total++;
+}
+
+void	ckr_sb(t_stack *a, t_stack *b, t_op_count *c)
+{
+	(void)a;
+	s(b);
+	c->sb++;
+	c->total++;
+}
+
+void	ckr_ss(t_stack *a, t_stack *b, t_op_count *c)
 {
 	s(a);
-	op_count(0);
-	if (!bench)
-		write(1, "sa\n", 3);
-}
-
-void	sb(int bench, t_stack *b)
-{
 	s(b);
-	op_count(1);
-	if (!bench)
-		write(1, "sb\n", 3);
+	c->ss++;
+	c->total++;
 }
 
-void	ss(int bench, t_stack *a, t_stack *b)
-{
-	s(a);
-	s(b);
-	op_count(2);
-	if (!bench)
-		write(1, "ss\n", 3);
-}
-
-void	pa(int bench, t_stack *a, t_stack *b)
+void	ckr_pa(t_stack *a, t_stack *b, t_op_count *c)
 {
 	p(b, a);
-	op_count(3);
-	if (!bench)
-		write(1, "pa\n", 3);
+	c->pa++;
+	c->total++;
 }
 
-void	pb(int bench, t_stack *a, t_stack *b)
+void	ckr_pb(t_stack *a, t_stack *b, t_op_count *c)
 {
 	p(a, b);
-	op_count(4);
-	if (!bench)
-		write(1, "pb\n", 3);
+	c->pb++;
+	c->total++;
 }
