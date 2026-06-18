@@ -84,21 +84,20 @@ void				rra(int bench, t_stack *a);
 void				rrb(int bench, t_stack *b);
 void				rrr(int bench, t_stack *a, t_stack *b);
 
-// adaptive algorithm — dispatcher.c
+// adaptive algorithm & flag — dispatcher.c
 void				dispatcher(t_stack *a, t_stack *b, t_ps_flags f);
 float				disorder(t_stack *h);
 int					is_sorted(t_stack *a);
+void				adaptive_sort(t_stack *a, t_stack *b, t_ps_flags f);
 
 // sorting — sort.c
-void				chunk_sort(int bench, t_stack *a, t_stack *b); // to do
-void				radix_sort(int bench, t_stack *a, t_stack *b); // to do
-
-// sorting — sort_inverted.c (d=1.0 special case)
-void				sort_inverted(int bench, t_stack *a, t_stack *b);
-
-// sorting — simple_sort.c
 void				selection_sort(int bench, t_stack *a, t_stack *b);
-void				min_top(int bench, t_stack *a);
+void				chunk_sort(int bench, t_stack *a, t_stack *b); // to do
+void				radix_sort(int bench, t_stack *a, t_stack *b);
+
+// sorting simple functions - sort_utils.c
+void				sort_inverted(int bench, t_stack *a, t_stack *b);
+void				min_to_top(int bench, t_stack *a);
 int					find_min(t_stack *x);
 void				sort_2(int bench, t_stack *a);
 void				sort_3(int bench, t_stack *a);

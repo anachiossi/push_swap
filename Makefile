@@ -6,7 +6,7 @@ LIBFT		= libft.a
 
 SRCS	= main.c parse.c stack.c stack_utils.c \
 		  operations_base.c operations_ps.c operations_r.c operations_rr.c \
-		  dispatcher.c sort.c sort_simple.c sort_inverted.c
+		  dispatcher.c sort.c sort_utils.c benchmode.c
 
 OBJ_DIR	= obj
 OBJS	= $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))

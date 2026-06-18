@@ -49,20 +49,14 @@ int	input_to_stack(char **arg, t_stack *a)
 	while (*arg)
 	{
 		if (!is_valid(*arg))
-		{
-			free_stack(a);
 			return (0);
-		}
 		n = new_node(ft_atoi(*arg++));
 		push_bottom(a, n);
 		temp = a->top;
 		while (a->bottom && a->bottom->value != temp->value)
 			temp = temp->next;
 		if (!n || temp != a->bottom)
-		{
-			free_stack(a);
 			return (0);
-		}
 	}
 	return (1);
 }
@@ -114,21 +108,4 @@ int	assign_flags(t_ps_flags *f, char **argv, int argc)
 	if (f->level == -1)
 		f->level = 0;
 	return (i);
-}
-
-void	benchmode(float d, int *n, int level)
-{
-	char	*s[4];
-
-	s[0] = "adaptive sort";
-	s[1] = "selection / O(n²)";
-	s[2] = "chunk / O(n√n)";
-	s[3] = "radix / O(n log n)";
-	ft_printf("[bench] disorder: %.2f%%\n", d * 100);
-	ft_printf("[bench] strategy: %s\n", s[level]);
-	ft_printf("[bench] total ops: %d\n", n[11]);
-	ft_printf("[bench] sa: %d\tsb: %d\tss: %d\tpa: %d\tpb: %d\n", n[0], n[1],
-		n[2], n[3], n[4]);
-	ft_printf("[bench] ra: %d\trb: %d\trr: %d\trra: %d\trrb: %d\trrr: %d\n",
-		n[5], n[6], n[7], n[8], n[9], n[10]);
 }

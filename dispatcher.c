@@ -52,6 +52,20 @@ int	is_sorted(t_stack *a)
 	return (1);
 }
 
+void	dispatcher(t_stack *a, t_stack *b, t_ps_flags f)
+{
+	if (is_sorted(a))
+		return ;
+	if (f.level == 0)
+		adaptive_sort(a, b, f);
+	else if (f.level == 1)
+		selection_sort(f.bench, a, b);
+	else if (f.level == 2)
+		chunk_sort(f.bench, a, b);
+	else if (f.level == 3)
+		radix_sort(f.bench, a, b);
+}
+
 void	adaptive_sort(t_stack *a, t_stack *b, t_ps_flags f)
 {
 	float	d;
@@ -74,19 +88,5 @@ void	adaptive_sort(t_stack *a, t_stack *b, t_ps_flags f)
 	if (d < t || d > 1.0 - t)
 		selection_sort(f.bench, a, b);
 	else
-		radix_sort(f.bench, a, b);
-}
-
-void	dispatcher(t_stack *a, t_stack *b, t_ps_flags f)
-{
-	if (is_sorted(a))
-		return ;
-	if (f.level == 0)
-		adaptive_sort(a, b, f);
-	else if (f.level == 1)
-		selection_sort(f.bench, a, b);
-	else if (f.level == 2)
-		chunk_sort(f.bench, a, b);
-	else if (f.level == 3)
 		radix_sort(f.bench, a, b);
 }

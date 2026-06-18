@@ -30,6 +30,21 @@
 
 #include "push_swap.h"
 
+void	selection_sort(int bench, t_stack *a, t_stack *b)
+{
+	while (a->size > 3 && !is_sorted(a))
+	{
+		min_to_top(bench, a);
+		pb(bench, a, b);
+	}
+	if (a->size == 2)
+		sort_2(bench, a);
+	else if (a->size == 3)
+		sort_3(bench, a);
+	while (b->size)
+		pa(bench, a, b);
+}
+
 static void	radix_iter(int bench, unsigned int n, t_stack *a, t_stack *b)
 {
 	int	size;
@@ -82,3 +97,4 @@ void	radix_sort(int bench, t_stack *a, t_stack *b)
 	while (n < digits)
 		radix_iter(bench, n++, a, b);
 }
+

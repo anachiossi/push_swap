@@ -81,7 +81,7 @@ void	sort_3(int bench, t_stack *a)
 		rra(bench, a);
 }
 
-void	min_top(int bench, t_stack *a)
+void	min_to_top(int bench, t_stack *a)
 {
 	int		min;
 	int		pos;
@@ -103,17 +103,25 @@ void	min_top(int bench, t_stack *a)
 			rra(bench, a);
 }
 
-void	selection_sort(int bench, t_stack *a, t_stack *b)
+void	sort_inverted(int bench, t_stack *a, t_stack *b)
 {
-	while (a->size > 3 && !is_sorted(a))
-	{
-		min_top(bench, a);
-		pb(bench, a, b);
-	}
+	int	n;
+
 	if (a->size == 2)
-		sort_2(bench, a);
-	else if (a->size == 3)
-		sort_3(bench, a);
-	while (b->size)
+		return (sort_2(bench, a));
+	if (a->size == 3)
+		return (sort_3(bench, a));
+	n = a->size - 4;
+	sa(bench, a);
+	while (n > 0)
+	{
+		rra(bench, a);
+		pb(bench, a, b);
+		n--;
+	}
+	ra(bench, a);
+	ra(bench, a);
+	sa(bench, a);
+	while (b->size > 0)
 		pa(bench, a, b);
 }
