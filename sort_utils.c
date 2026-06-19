@@ -1,32 +1,14 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_simple.c                                      :+:      :+:    :+:   */
+/*   sort_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsantoni <gsantoni@student.42roma.it>      +#+  +:+       +#+        */
+/*   By: anade-mo <anade-mo <marvin@42.fr>>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/11 19:48:54 by anade-mo          #+#    #+#             */
-/*   Updated: 2026/06/14 13:47:57 by anade-mo         ###   ########.fr       */
+/*   Updated: 2026/06/19 18:22:11 by anade-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-/*
-  SWAP (swap n1 and n2 of x)
-  sa  → swap top 2 elements of a
-  sb  → swap top 2 elements of b
-
-  PUSH  (top x -> top x)
-  pa  → take top of b, push to top of a
-  pb  → take top of a, push to top of b
-
-  ROTATE  (top x → bottom x)
-  ra  → top of a goes to bottom of a
-  rb  → top of b goes to bottom of b
-
-  REVERSE ROTATE  (bottom x → top x)
-  rra → bottom of a goes to top of a
-  rrb → bottom of b goes to top of b
-*/
 
 #include "push_swap.h"
 
@@ -44,41 +26,6 @@ int	find_min(t_stack *x)
 		current = current->next;
 	}
 	return (min);
-}
-
-void	sort_2(int bench, t_stack *a)
-{
-	if (a->top->value > a->top->next->value)
-		sa(bench, a);
-}
-
-void	sort_3(int bench, t_stack *a)
-{
-	int	top;
-	int	mid;
-	int	bot;
-
-	top = a->top->value;
-	mid = a->top->next->value;
-	bot = a->bottom->value;
-	if (top < mid && mid < bot)
-		return ;
-	if (top > mid && top > bot && mid < bot)
-		ra(bench, a);
-	else if (top > mid && top > bot && mid > bot)
-	{
-		sa(bench, a);
-		rra(bench, a);
-	}
-	else if (top < mid && top < bot)
-	{
-		rra(bench, a);
-		sa(bench, a);
-	}
-	else if (top > mid)
-		sa(bench, a);
-	else
-		rra(bench, a);
 }
 
 void	min_to_top(int bench, t_stack *a)
@@ -103,25 +50,40 @@ void	min_to_top(int bench, t_stack *a)
 			rra(bench, a);
 }
 
-void	sort_inverted(int bench, t_stack *a, t_stack *b)
+int	find_max(t_stack *x)
 {
-	int	n;
+	int		max;
+	t_node	*current;
 
-	if (a->size == 2)
-		return (sort_2(bench, a));
-	if (a->size == 3)
-		return (sort_3(bench, a));
-	n = a->size - 4;
-	sa(bench, a);
-	while (n > 0)
+	max = x->top->value;
+	current = x->top->next;
+	while (current)
 	{
-		rra(bench, a);
-		pb(bench, a, b);
-		n--;
+		if (current->value > max)
+			max = current->value;
+		current = current->next;
 	}
-	ra(bench, a);
-	ra(bench, a);
-	sa(bench, a);
-	while (b->size > 0)
-		pa(bench, a, b);
+	return (max);
+}
+
+void	max_to_top(int bench, t_stack *b)
+{
+	int		max;
+	int		pos;
+	t_node	*cur;
+
+	max = find_max(b);
+	pos = 0;
+	cur = b->top;
+	while (cur->value != max)
+	{
+		pos++;
+		cur = cur->next;
+	}
+	if (pos <= b->size / 2)
+		while (b->top->value != max)
+			rb(bench, b);
+	else
+		while (b->top->value != max)
+			rrb(bench, b);
 }

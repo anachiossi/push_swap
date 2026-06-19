@@ -6,7 +6,7 @@
 /*   By: anade-mo <anade-mo <marvin@42.fr>>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/11 14:00:15 by anade-mo          #+#    #+#             */
-/*   Updated: 2026/06/17 12:11:14 by anade-mo         ###   ########.fr       */
+/*   Updated: 2026/06/19 18:15:13 by anade-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,27 +61,6 @@ int	input_to_stack(char **arg, t_stack *a)
 	return (1);
 }
 
-void	assign_ranks(t_stack *a)
-{
-	int		r;
-	t_node	*n;
-	t_node	*t;
-
-	n = a->top;
-	while (n)
-	{
-		r = 0;
-		t = a->top;
-		while (t)
-		{
-			r += (n->value > t->value);
-			t = t->next;
-		}
-		n->rank = r;
-		n = n->next;
-	}
-}
-
 int	assign_flags(t_ps_flags *f, char **argv, int argc)
 {
 	int	i;
@@ -108,4 +87,25 @@ int	assign_flags(t_ps_flags *f, char **argv, int argc)
 	if (f->level == -1)
 		f->level = 0;
 	return (i);
+}
+
+void	assign_ranks(t_stack *a)
+{
+	int		r;
+	t_node	*n;
+	t_node	*t;
+
+	n = a->top;
+	while (n)
+	{
+		r = 0;
+		t = a->top;
+		while (t)
+		{
+			r += (n->value > t->value);
+			t = t->next;
+		}
+		n->rank = r;
+		n = n->next;
+	}
 }

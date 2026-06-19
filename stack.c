@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsantoni <gsantoni@student.42roma.it>      +#+  +:+       +#+        */
+/*   By: anade-mo <anade-mo <marvin@42.fr>>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 19:42:37 by gsantoni          #+#    #+#             */
-/*   Updated: 2026/06/13 10:14:24 by gsantoni         ###   ########.fr       */
+/*   Updated: 2026/06/19 18:22:13 by anade-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	free_stack(t_stack *stack)
 
 void	print_stack(t_stack *stack)
 {
-	t_node		*temp;
+	t_node	*temp;
 
 	if (!stack->size)
 		return ;

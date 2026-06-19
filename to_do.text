@@ -12,7 +12,3 @@ AFTER SORTING OPTIMIZATION:
 	if it finds rra & rrb susbtitute for rrr.
 	if it finds sa & sb substitute for ss.
 
-TOOLS:
-
-2 - CREATE A operation O mesure: calculates Big O from input size and operation numbers. 
- 

@@ -3,14 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   dispatcher.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsantoni <gsantoni@student.42roma.it>      +#+  +:+       +#+        */
+/*   By: anade-mo <anade-mo <marvin@42.fr>>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/11 00:00:00 by anade-mo          #+#    #+#             */
-/*   Updated: 2026/06/16 21:08:46 by anade-mo         ###   ########.fr       */
+/*   Updated: 2026/06/19 18:22:34 by anade-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+int	is_sorted(t_stack *a)
+{
+	t_node	*cur;
+
+	cur = a->top;
+	while (cur && cur->next)
+	{
+		if (cur->value > cur->next->value)
+			return (0);
+		cur = cur->next;
+	}
+	return (1);
+}
 
 float	disorder(t_stack *x)
 {
@@ -36,20 +50,6 @@ float	disorder(t_stack *x)
 		a = a->next;
 	}
 	return ((float)m / (float)p);
-}
-
-int	is_sorted(t_stack *a)
-{
-	t_node	*cur;
-
-	cur = a->top;
-	while (cur && cur->next)
-	{
-		if (cur->value > cur->next->value)
-			return (0);
-		cur = cur->next;
-	}
-	return (1);
 }
 
 void	dispatcher(t_stack *a, t_stack *b, t_ps_flags f)

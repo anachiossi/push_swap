@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsantoni <gsantoni@student.42roma.it>      +#+  +:+       +#+        */
+/*   By: anade-mo <anade-mo <marvin@42.fr>>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 18:29:22 by gsantoni          #+#    #+#             */
-/*   Updated: 2026/06/14 11:22:44 by gsantoni         ###   ########.fr       */
+/*   Updated: 2026/06/19 18:31:30 by anade-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ int					is_valid(char *s);
 int					input_to_stack(char **arg, t_stack *a);
 int					assign_flags(t_ps_flags *f, char **argv, int argc);
 void				assign_ranks(t_stack *a);
-void				benchmode(float d, int *n, int level);
 
 // stack creation — stack.c
 t_node				*new_node(int value);
@@ -85,21 +84,30 @@ void				rrb(int bench, t_stack *b);
 void				rrr(int bench, t_stack *a, t_stack *b);
 
 // adaptive algorithm & flag — dispatcher.c
-void				dispatcher(t_stack *a, t_stack *b, t_ps_flags f);
-float				disorder(t_stack *h);
 int					is_sorted(t_stack *a);
+float				disorder(t_stack *h);
+void				dispatcher(t_stack *a, t_stack *b, t_ps_flags f);
 void				adaptive_sort(t_stack *a, t_stack *b, t_ps_flags f);
 
-// sorting — sort.c
-void				selection_sort(int bench, t_stack *a, t_stack *b);
-void				chunk_sort(int bench, t_stack *a, t_stack *b); // to do
-void				radix_sort(int bench, t_stack *a, t_stack *b);
-
-// sorting simple functions - sort_utils.c
-void				sort_inverted(int bench, t_stack *a, t_stack *b);
-void				min_to_top(int bench, t_stack *a);
-int					find_min(t_stack *x);
+// sorting simple - sort_selection.c
 void				sort_2(int bench, t_stack *a);
 void				sort_3(int bench, t_stack *a);
+void				sort_inverted(int bench, t_stack *a, t_stack *b);
+void				selection_sort(int bench, t_stack *a, t_stack *b);
+
+// sorting medium - sort_chunk.c
+void				chunk_sort(int bench, t_stack *a, t_stack *b);
+
+// sorting complex - sort_radix.c
+void				radix_sort(int bench, t_stack *a, t_stack *b);
+
+// sorting utils - sort_utils.c
+int					find_min(t_stack *x);
+void				min_to_top(int bench, t_stack *a);
+int					find_max(t_stack *x);
+void				max_to_top(int bench, t_stack *b);
+
+//benchmode.c
+void				benchmode(float d, int *n, int level);
 
 #endif

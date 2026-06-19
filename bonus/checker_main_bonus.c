@@ -6,13 +6,13 @@
 /*   By: anade-mo <anade-mo <marvin@42.fr>>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/17 12:59:08 by anade-mo          #+#    #+#             */
-/*   Updated: 2026/06/18 18:03:39 by anade-mo         ###   ########.fr       */
+/*   Updated: 2026/06/19 18:25:16 by anade-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker_bonus.h"
 
-int		main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	t_stack		*a;
 	t_stack		*b;
