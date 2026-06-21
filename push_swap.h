@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anade-mo <anade-mo <marvin@42.fr>>         +#+  +:+       +#+        */
+/*   By: anade-mo <anade-mo@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 18:29:22 by gsantoni          #+#    #+#             */
-/*   Updated: 2026/06/19 18:31:30 by anade-mo         ###   ########.fr       */
+/*   Updated: 2026/06/21 23:47:50 by anade-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,8 +86,9 @@ void				rrr(int bench, t_stack *a, t_stack *b);
 // adaptive algorithm & flag — dispatcher.c
 int					is_sorted(t_stack *a);
 float				disorder(t_stack *h);
-void				dispatcher(t_stack *a, t_stack *b, t_ps_flags f);
-void				adaptive_sort(t_stack *a, t_stack *b, t_ps_flags f);
+void				dispatcher(t_stack *a, t_stack *b, t_ps_flags f, float d);
+void				adaptive_sort(t_stack *a, t_stack *b,
+						t_ps_flags f, float d);
 
 // sorting simple - sort_selection.c
 void				sort_2(int bench, t_stack *a);
@@ -102,8 +103,7 @@ void				chunk_sort(int bench, t_stack *a, t_stack *b);
 void				radix_sort(int bench, t_stack *a, t_stack *b);
 
 // sorting utils - sort_utils.c
-int					find_min(t_stack *x);
-void				min_to_top(int bench, t_stack *a);
+void				rank_to_top(int bench, t_stack *a, int i);
 int					find_max(t_stack *x);
 void				max_to_top(int bench, t_stack *b);
 

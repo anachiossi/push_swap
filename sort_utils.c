@@ -3,50 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   sort_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anade-mo <anade-mo <marvin@42.fr>>         +#+  +:+       +#+        */
+/*   By: anade-mo <anade-mo@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/11 19:48:54 by anade-mo          #+#    #+#             */
-/*   Updated: 2026/06/19 18:22:11 by anade-mo         ###   ########.fr       */
+/*   Updated: 2026/06/21 23:42:51 by anade-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	find_min(t_stack *x)
+void	rank_to_top(int bench, t_stack *a, int i)
 {
-	int		min;
-	t_node	*current;
-
-	min = x->top->value;
-	current = x->top->next;
-	while (current)
-	{
-		if (current->value < min)
-			min = current->value;
-		current = current->next;
-	}
-	return (min);
-}
-
-void	min_to_top(int bench, t_stack *a)
-{
-	int		min;
 	int		pos;
 	t_node	*cur;
 
-	min = find_min(a);
 	pos = 0;
 	cur = a->top;
-	while (cur->value != min)
+	while (cur->rank != i)
 	{
 		pos++;
 		cur = cur->next;
 	}
 	if (pos <= a->size / 2)
-		while (a->top->value != min)
+		while (a->top->rank != i)
 			ra(bench, a);
 	else
-		while (a->top->value != min)
+		while (a->top->rank != i)
 			rra(bench, a);
 }
 

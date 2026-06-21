@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   dispatcher.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anade-mo <anade-mo <marvin@42.fr>>         +#+  +:+       +#+        */
+/*   By: anade-mo <anade-mo@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/11 00:00:00 by anade-mo          #+#    #+#             */
-/*   Updated: 2026/06/21 10:00:10 by gsantoni         ###   ########.fr       */
+/*   Updated: 2026/06/21 23:42:36 by anade-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
 #include "libft.h"
+#include "push_swap.h"
 
 int	is_sorted(t_stack *a)
 {
@@ -53,12 +53,12 @@ float	disorder(t_stack *x)
 	return ((float)m / (float)p);
 }
 
-void	dispatcher(t_stack *a, t_stack *b, t_ps_flags f)
+void	dispatcher(t_stack *a, t_stack *b, t_ps_flags f, float d)
 {
 	if (is_sorted(a))
 		return ;
 	if (f.level == 0)
-		adaptive_sort(a, b, f);
+		adaptive_sort(a, b, f, d);
 	else if (f.level == 1)
 		selection_sort(f.bench, a, b);
 	else if (f.level == 2)
@@ -67,27 +67,29 @@ void	dispatcher(t_stack *a, t_stack *b, t_ps_flags f)
 		radix_sort(f.bench, a, b);
 }
 
-void	adaptive_sort(t_stack *a, t_stack *b, t_ps_flags f)
+void	adaptive_sort(t_stack *a, t_stack *b, t_ps_flags f, float d)
 {
-	float	d;
-	float	t;
-	int		n;
+	int	n;
 
 	n = a->size;
-	d = disorder(a);
 	if (d == 1.0)
 		return (sort_inverted(f.bench, a, b));
 	if (n <= 100)
 		return (selection_sort(f.bench, a, b));
-	if (n > 300)
+	if (n > 100 && n <= 150)
+	{
+		if (d <= 0.15 || d >= 0.85)
+			return (selection_sort(f.bench, a, b));
+		else
+			return (chunk_sort(f.bench, a, b));
+	}
+	if (n > 150 && n <= 250)
+	{
+		if (d <= 0.1 || d >= 0.9)
+			return (selection_sort(f.bench, a, b));
+		else
+			return (chunk_sort(f.bench, a, b));
+	}
+	if (n > 250)
 		return (radix_sort(f.bench, a, b));
-	t = 0.1;
-	if (n <= 150)
-		t = 0.2;
-	else if (n <= 200)
-		t = 0.15;
-	if (d < t || d > 1.0 - t)
-		selection_sort(f.bench, a, b);
-	else
-		radix_sort(f.bench, a, b);
 }

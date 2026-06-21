@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_simple.c                                      :+:      :+:    :+:   */
+/*   sort_selection.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anade-mo <anade-mo <marvin@42.fr>>         +#+  +:+       +#+        */
+/*   By: anade-mo <anade-mo@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/11 19:48:54 by anade-mo          #+#    #+#             */
-/*   Updated: 2026/06/19 18:07:51 by anade-mo         ###   ########.fr       */
+/*   Updated: 2026/06/21 23:48:05 by anade-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,10 +72,14 @@ void	sort_inverted(int bench, t_stack *a, t_stack *b)
 
 void	selection_sort(int bench, t_stack *a, t_stack *b)
 {
-	while (a->size > 3 && disorder(a) != 0)
+	int	i;
+
+	i = 0;
+	while (a->size > 3 && !is_sorted(a))
 	{
-		min_to_top(bench, a);
+		rank_to_top(bench, a, i);
 		pb(bench, a, b);
+		i++;
 	}
 	if (a->size == 2)
 		sort_2(bench, a);
