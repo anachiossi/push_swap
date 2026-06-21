@@ -6,7 +6,7 @@
 /*   By: gsantoni <gsantoni@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 18:45:55 by gsantoni          #+#    #+#             */
-/*   Updated: 2026/06/21 11:32:06 by gsantoni         ###   ########.fr       */
+/*   Updated: 2026/06/21 16:28:07 by gsantoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ int	main(int argc, char **argv)
 	dispatcher(a, b, f);
 	if (f.bench)
 		benchmode(d, op_count(-1), f.level);
-//	print_stack(a);
 	free_stack(a);
 	free_stack(b);
 	return (0);
