@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dispatcher.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anade-mo <anade-mo@student.42roma.it>      +#+  +:+       +#+        */
+/*   By: anade-mo <anade-mo <marvin@42.fr>>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/11 00:00:00 by anade-mo          #+#    #+#             */
-/*   Updated: 2026/06/21 23:42:36 by anade-mo         ###   ########.fr       */
+/*   Updated: 2026/06/24 12:28:41 by anade-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,27 +69,29 @@ void	dispatcher(t_stack *a, t_stack *b, t_ps_flags f, float d)
 
 void	adaptive_sort(t_stack *a, t_stack *b, t_ps_flags f, float d)
 {
-	int	n;
-
-	n = a->size;
 	if (d == 1.0)
 		return (sort_inverted(f.bench, a, b));
-	if (n <= 100)
+	if (a->size <= 100)
 		return (selection_sort(f.bench, a, b));
-	if (n > 100 && n <= 150)
+	if (a->size > 100 && a->size <= 150)
 	{
 		if (d <= 0.15 || d >= 0.85)
 			return (selection_sort(f.bench, a, b));
 		else
 			return (chunk_sort(f.bench, a, b));
 	}
-	if (n > 150 && n <= 250)
+	if (a->size > 150 && a->size <= 200)
 	{
 		if (d <= 0.1 || d >= 0.9)
 			return (selection_sort(f.bench, a, b));
 		else
 			return (chunk_sort(f.bench, a, b));
 	}
-	if (n > 250)
-		return (radix_sort(f.bench, a, b));
+	if (a->size > 200)
+	{
+		if ((a->size <= 300) && (d <= 0.05 || d >= 0.95))
+			return (selection_sort(f.bench, a, b));
+		else 
+			return (radix_sort(f.bench, a, b));
+	}
 }
