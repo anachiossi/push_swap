@@ -3,3 +3,10 @@ en.subject.pdf
 *.swp
 .vscode/
 test_main
+push_swap
+checker
+a.out
+
+# Nested toolkit is its own git repo with its own remote — keep it out of
+# this repo so it's never committed as an embedded gitlink.
+push_swap_toolkit/
